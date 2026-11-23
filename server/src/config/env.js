@@ -7,7 +7,7 @@ module.exports = {
   NODE_ENV: process.env.NODE_ENV || 'development',
   PORT: parseInt(process.env.PORT || '5000', 10),
   CLIENT_URL: process.env.CLIENT_URL || 'http://localhost:5173',
-  MONGODB_URI: process.env.MONGODB_URI || process.env.MONGO_URI || 'mongodb://127.0.0.1:27017/lost-and-found',
+  MONGODB_URI: process.env.MONGODB_URI || process.env.MONGO_URI || process.env.MONGO_URL || process.env.DATABASE_URL || 'mongodb://127.0.0.1:27017/lost-and-found',
   JWT_SECRET: process.env.JWT_SECRET || 'super-secret-jwt-key-for-ai-lost-found-2026',
   JWT_EXPIRES_IN: process.env.JWT_EXPIRES_IN || '7d',
   ML_SERVICE_URL: process.env.ML_SERVICE_URL || 'http://127.0.0.1:8000',
