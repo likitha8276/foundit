@@ -74,9 +74,11 @@ app.use('/uploads', express.static(uploadsDir));
 
 // Health check endpoint
 app.get('/api/health', (req, res) => {
+  const mongoose = require('mongoose');
   res.status(200).json({
     status: 'ok',
     service: 'ai-lost-and-found-backend',
+    database: mongoose.connection.readyState === 1 ? 'connected' : 'connecting_or_disconnected',
     uptime: process.uptime(),
     timestamp: new Date().toISOString()
   });

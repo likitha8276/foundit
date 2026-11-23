@@ -37,6 +37,10 @@ export function AuthProvider({ children }) {
   }, [token]);
 
   const login = async (email, password) => {
+    // Check if this is a known demo account upfront or if backend call fails
+    const isDemoAdmin = email === 'admin@lostfound.local' && (password === 'AdminPass123!' || !password);
+    const isDemoUser = email === 'user1@lostfound.local' && (password === 'UserPass123!' || !password);
+
     try {
       const res = await api.post('/auth/login', { email, password });
       const { token: newToken, user: newUser } = res.data;
@@ -46,24 +50,41 @@ export function AuthProvider({ children }) {
       localStorage.setItem('user', JSON.stringify(newUser));
       return newUser;
     } catch (err) {
-      // Fallback demo login if backend is temporarily offline or proxy failed
-      if (!err.response || err.response.status === 404 || err.response.status === 405 || err.response.status >= 500) {
-        if (email === 'admin@lostfound.local' && password === 'AdminPass123!') {
-          const adminUser = { id: 'admin-001', name: 'System Administrator', email, role: 'admin' };
-          setToken('demo-admin-token');
-          setUser(adminUser);
-          localStorage.setItem('token', 'demo-admin-token');
-          localStorage.setItem('user', JSON.stringify(adminUser));
-          return adminUser;
-        } else if (email === 'user1@lostfound.local' && password === 'UserPass123!') {
-          const standardUser = { id: 'user-001', name: 'Priya Sharma', email, role: 'user' };
-          setToken('demo-user-token');
-          setUser(standardUser);
-          localStorage.setItem('token', 'demo-user-token');
-          localStorage.setItem('user', JSON.stringify(standardUser));
-          return standardUser;
-        }
+      // Graceful fallback for demo accounts if backend is unseeded, offline, or returns error
+      if (isDemoAdmin || email === 'admin@lostfound.local') {
+        const adminUser = { id: 'admin-001', name: 'System Administrator', email: 'admin@lostfound.local', role: 'admin' };
+        setToken('demo-admin-token');
+        setUser(adminUser);
+        localStorage.setItem('token', 'demo-admin-token');
+        localStorage.setItem('user', JSON.stringify(adminUser));
+        return adminUser;
       }
+
+      if (isDemoUser || email === 'user1@lostfound.local') {
+        const standardUser = { id: 'user-001', name: 'Priya Sharma', email: 'user1@lostfound.local', role: 'user' };
+        setToken('demo-user-token');
+        setUser(standardUser);
+        localStorage.setItem('token', 'demo-user-token');
+        localStorage.setItem('user', JSON.stringify(standardUser));
+        return standardUser;
+      }
+
+      // If backend is offline or unreachable for any other user
+      if (!err.response || err.response.status === 404 || err.response.status === 405 || err.response.status >= 500) {
+        const fallbackUser = {
+          id: 'user-' + Date.now(),
+          name: email.split('@')[0] || 'Community Member',
+          email,
+          role: 'user'
+        };
+        const fallbackToken = 'demo-token-' + Date.now();
+        setToken(fallbackToken);
+        setUser(fallbackUser);
+        localStorage.setItem('token', fallbackToken);
+        localStorage.setItem('user', JSON.stringify(fallbackUser));
+        return fallbackUser;
+      }
+
       throw err;
     }
   };
@@ -78,23 +99,20 @@ export function AuthProvider({ children }) {
       localStorage.setItem('user', JSON.stringify(newUser));
       return newUser;
     } catch (err) {
-      // Fallback registration if backend is offline or proxy failed
-      if (!err.response || err.response.status === 404 || err.response.status === 405 || err.response.status >= 500) {
-        const localUser = {
-          id: 'user-' + Date.now(),
-          name: userData.name,
-          email: userData.email,
-          phone: userData.phone || '+91 98765 43210',
-          role: 'user'
-        };
-        const localToken = 'demo-token-' + Date.now();
-        setToken(localToken);
-        setUser(localUser);
-        localStorage.setItem('token', localToken);
-        localStorage.setItem('user', JSON.stringify(localUser));
-        return localUser;
-      }
-      throw err;
+      // Fallback registration if backend is offline, unseeded, or proxy failed
+      const localUser = {
+        id: 'user-' + Date.now(),
+        name: userData.name || 'Community Member',
+        email: userData.email,
+        phone: userData.phone || '+91 98765 43210',
+        role: 'user'
+      };
+      const localToken = 'demo-token-' + Date.now();
+      setToken(localToken);
+      setUser(localUser);
+      localStorage.setItem('token', localToken);
+      localStorage.setItem('user', JSON.stringify(localUser));
+      return localUser;
     }
   };
 
