@@ -76,7 +76,7 @@ export default function Dashboard() {
             name: 'Found Leather Wallet',
             description: 'Found black leather wallet near metro station ticket kiosks.',
             location: { name: 'Metro Station Ticket Kiosks' },
-            contact: { name: 'Ganga Raman', phone: '+1 555-0182' }
+            contact: { name: 'Ganga Raman', phone: '+91 98451 23456' }
           },
           finalScore: 0.89,
           state: 'suggested'

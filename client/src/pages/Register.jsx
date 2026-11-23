@@ -89,7 +89,7 @@ export default function Register() {
                 required
                 value={formData.name}
                 onChange={handleChange}
-                placeholder="Jane Doe"
+                placeholder="Priya Sharma"
                 className="input-field pl-9"
               />
             </div>
@@ -105,7 +105,7 @@ export default function Register() {
                 required
                 value={formData.email}
                 onChange={handleChange}
-                placeholder="jane@example.com"
+                placeholder="priya@example.in"
                 className="input-field pl-9"
               />
             </div>
@@ -120,7 +120,7 @@ export default function Register() {
                 name="phone"
                 value={formData.phone}
                 onChange={handleChange}
-                placeholder="+1 (555) 012-3456"
+                placeholder="+91 98765 43210"
                 className="input-field pl-9"
               />
             </div>

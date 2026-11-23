@@ -33,7 +33,7 @@ describe('Client Authentication Pages', () => {
     renderWithProviders(<Register />);
 
     expect(screen.getByText(/Create an Account/i)).toBeInTheDocument();
-    expect(screen.getByPlaceholderText(/Jane Doe/i)).toBeInTheDocument();
+    expect(screen.getByPlaceholderText(/Priya Sharma/i)).toBeInTheDocument();
     expect(screen.getByPlaceholderText(/jane@example.com/i)).toBeInTheDocument();
     expect(screen.getByRole('button', { name: /Create Account/i })).toBeInTheDocument();
   });

@@ -52,16 +52,16 @@ async function populateDemoData() {
     name: 'System Administrator',
     email: 'admin@lostfound.local',
     passwordHash: adminPass,
-    phone: '+1-555-0100',
+    phone: '+91 98765 01000',
     role: 'admin',
     isActive: true
   });
 
   const user1 = await User.create({
-    name: 'Jane Smith',
+    name: 'Priya Sharma',
     email: 'user1@lostfound.local',
     passwordHash: userPass,
-    phone: '+1-555-0101',
+    phone: '+91 98451 01010',
     role: 'user',
     isActive: true
   });
@@ -70,16 +70,16 @@ async function populateDemoData() {
     name: 'Ganga Raman',
     email: 'user2@lostfound.local',
     passwordHash: userPass,
-    phone: '7563928847',
+    phone: '+91 75639 28847',
     role: 'user',
     isActive: true
   });
 
   const user3 = await User.create({
-    name: 'Jordan Lee',
+    name: 'Rohan Verma',
     email: 'user3@lostfound.local',
     passwordHash: userPass,
-    phone: '+1-555-0103',
+    phone: '+91 98123 01030',
     role: 'user',
     isActive: false // Disabled user for testing
   });

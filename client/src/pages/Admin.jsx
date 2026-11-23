@@ -70,13 +70,13 @@ export default function Admin() {
           status: 'lost',
           moderation: 'approved',
           createdAt: new Date().toISOString(),
-          userId: { name: 'Jane Smith', email: 'user1@lostfound.local' }
+          userId: { name: 'Priya Sharma', email: 'user1@lostfound.local' }
         }
       ]);
       setUsers([
         {
           _id: 'usr-001',
-          name: 'Jane Smith',
+          name: 'Priya Sharma',
           email: 'user1@lostfound.local',
           role: 'user',
           isActive: true,

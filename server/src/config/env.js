@@ -19,5 +19,5 @@ module.exports = {
   ADMIN_EMAIL: process.env.ADMIN_EMAIL || 'admin@lostfound.local',
   ADMIN_PASSWORD: process.env.ADMIN_PASSWORD || 'AdminPass123!',
   ADMIN_NAME: process.env.ADMIN_NAME || 'System Administrator',
-  ADMIN_PHONE: process.env.ADMIN_PHONE || '+1-555-0199'
+  ADMIN_PHONE: process.env.ADMIN_PHONE || '+91 98765 43210'
 };

@@ -56,7 +56,7 @@ export function AuthProvider({ children }) {
           localStorage.setItem('user', JSON.stringify(adminUser));
           return adminUser;
         } else if (email === 'user1@lostfound.local' && password === 'UserPass123!') {
-          const standardUser = { id: 'user-001', name: 'Jane Smith', email, role: 'user' };
+          const standardUser = { id: 'user-001', name: 'Priya Sharma', email, role: 'user' };
           setToken('demo-user-token');
           setUser(standardUser);
           localStorage.setItem('token', 'demo-user-token');
