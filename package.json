@@ -1,0 +1,32 @@
+{
+  "name": "ai-lost-and-found",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Multimodal AI Lost and Found System using MPNet and CLIP",
+  "workspaces": [
+    "server",
+    "client"
+  ],
+  "scripts": {
+    "dev:server": "npm --prefix server run dev",
+    "dev:client": "npm --prefix client run dev",
+    "start:server": "npm --prefix server start",
+    "start:client": "npm --prefix client start",
+    "seed": "npm --prefix server run seed",
+    "seed:admin": "npm --prefix server run seed:admin",
+    "test:server": "npm --prefix server test",
+    "test:client": "npm --prefix client test",
+    "test:ml": "pytest ml-service/tests",
+    "evaluate": "python scripts/evaluate/evaluate.py"
+  },
+  "keywords": [
+    "lost-and-found",
+    "clip",
+    "mpnet",
+    "multimodal",
+    "mern",
+    "ai"
+  ],
+  "author": "LostAndFound Team",
+  "license": "MIT"
+}

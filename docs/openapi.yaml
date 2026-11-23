@@ -1,0 +1,316 @@
+openapi: 3.0.3
+info:
+  title: AI Based Lost and Found System API
+  version: 1.0.0
+  description: |
+    Production-grade multimodal (MPNet text + CLIP vision) Lost and Found platform API.
+    Based on IEEE ESCI 2026 research publication.
+servers:
+  - url: http://localhost:5000/api
+    description: Local Development Backend
+paths:
+  /auth/register:
+    post:
+      summary: Register a new user account
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [name, email, password, phone]
+              properties:
+                name: { type: string, example: "Jane Doe" }
+                email: { type: string, format: email, example: "jane@campus.edu" }
+                password: { type: string, minLength: 6, example: "Secret123!" }
+                phone: { type: string, example: "+1 555-0199" }
+      responses:
+        '201':
+          description: User created and JWT returned
+        '400':
+          description: Validation error or email already in use
+
+  /auth/login:
+    post:
+      summary: Log into user account
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [email, password]
+              properties:
+                email: { type: string, format: email, example: "jane@campus.edu" }
+                password: { type: string, example: "Secret123!" }
+      responses:
+        '200':
+          description: Login successful, returns 7-day JWT token and user info
+        '401':
+          description: Invalid credentials or account deactivated
+
+  /auth/me:
+    get:
+      summary: Get currently authenticated user profile
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Current user profile
+        '401':
+          description: Unauthorized
+
+  /items:
+    get:
+      summary: List public lost/found items with blurred/sanitized contacts
+      parameters:
+        - name: status
+          in: query
+          schema: { type: string, enum: [lost, found] }
+        - name: category
+          in: query
+          schema: { type: string }
+        - name: search
+          in: query
+          schema: { type: string }
+        - name: page
+          in: query
+          schema: { type: integer, default: 1 }
+        - name: limit
+          in: query
+          schema: { type: integer, default: 20 }
+      responses:
+        '200':
+          description: Paginated item list
+
+    post:
+      summary: Report a new lost or found item
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required: [name, category, date, description, status]
+              properties:
+                name: { type: string, example: "Black Leather Bi-Fold Wallet" }
+                category: { type: string, enum: [wallet, phone, bag, bottle, keys, electronics, clothing, documents, other] }
+                date: { type: string, format: date, example: "2026-11-20" }
+                description: { type: string, example: "Lost near main student center cafeteria with student ID" }
+                status: { type: string, enum: [lost, found] }
+                contactName: { type: string, example: "Jane Doe" }
+                contactPhone: { type: string, example: "+1 555-0199" }
+                image: { type: string, format: binary }
+      responses:
+        '201':
+          description: Item successfully created, embedded, and matched against candidates
+
+  /items/my:
+    get:
+      summary: List items submitted by current authenticated user
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Array of user items with match counts and details
+
+  /items/{id}:
+    get:
+      summary: Get single item details
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        '200':
+          description: Item object
+        '404':
+          description: Item not found
+
+    delete:
+      summary: Delete an item (Owner or Admin)
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        '200':
+          description: Item deleted
+
+  /items/{id}/matches:
+    get:
+      summary: List top-K match candidates for this item
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        '200':
+          description: Ranked matches with similarity scores and verified contact details
+
+  /matches/{id}/claim:
+    post:
+      summary: Lost item owner initiates a claim ("This is mine")
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        '200':
+          description: Claim state updated to claimed
+
+  /matches/{id}/confirm:
+    post:
+      summary: Found item finder confirms the claim
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        '200':
+          description: Match confirmed and both items marked returned
+
+  /matches/{id}/reject:
+    post:
+      summary: Reject an inaccurate match
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        '200':
+          description: Match rejected
+
+  /notifications:
+    get:
+      summary: Get real-time and persistent user notifications
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: List of notifications
+
+  /notifications/read-all:
+    put:
+      summary: Mark all notifications as read
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: All notifications marked read
+
+  /admin/stats:
+    get:
+      summary: Admin metrics (total users, lost, found, matched, returned, flagged)
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Aggregate system counts
+
+  /admin/items:
+    get:
+      summary: Admin moderation list of all items
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: List of items with moderation flags
+
+  /admin/items/{id}/moderation:
+    put:
+      summary: Update moderation status (approved/rejected)
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: string }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [moderation]
+              properties:
+                moderation: { type: string, enum: [approved, rejected, pending] }
+      responses:
+        '200':
+          description: Item moderation state updated
+
+  /admin/users:
+    get:
+      summary: Admin user management list
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: List of registered users with valid registration dates
+
+  /admin/users/{id}/status:
+    put:
+      summary: Activate or deactivate a user account
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: string }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [isActive]
+              properties:
+                isActive: { type: boolean }
+      responses:
+        '200':
+          description: User status updated
+
+  /admin/audit-logs:
+    get:
+      summary: Retrieve immutable admin audit trail
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: List of audit records
+
+  /admin/model-performance:
+    get:
+      summary: Retrieve latest benchmark evaluation results and paper comparison
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Model performance metrics, confusion matrix, ablation benchmarks
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

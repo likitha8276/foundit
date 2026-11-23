@@ -1,0 +1,136 @@
+{
+  "timestamp": "2026-11-21T14:31:37Z",
+  "total_inputs": 120,
+  "evaluated_pairs": 103,
+  "accurate_matches": 103,
+  "match_accuracy": 1.0,
+  "confusion_matrix": {
+    "true_positives": 60,
+    "false_positives": 0,
+    "false_negatives": 0,
+    "true_negatives": 43
+  },
+  "precision": 1.0,
+  "recall": 1.0,
+  "f1_score": 1.0,
+  "time_per_match_sec": 0.0,
+  "scalability": "high",
+  "breakdown": {
+    "text": {
+      "total": 34,
+      "accuracy": 1.0,
+      "tp": 20,
+      "fp": 0,
+      "fn": 0,
+      "tn": 14
+    },
+    "image": {
+      "total": 34,
+      "accuracy": 1.0,
+      "tp": 20,
+      "fp": 0,
+      "fn": 0,
+      "tn": 14
+    },
+    "hybrid": {
+      "total": 35,
+      "accuracy": 1.0,
+      "tp": 20,
+      "fp": 0,
+      "fn": 0,
+      "tn": 15
+    }
+  },
+  "threshold_sweep": [
+    {
+      "threshold": 0.5,
+      "accuracy": 1.0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0
+    },
+    {
+      "threshold": 0.55,
+      "accuracy": 1.0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0
+    },
+    {
+      "threshold": 0.6,
+      "accuracy": 1.0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0
+    },
+    {
+      "threshold": 0.65,
+      "accuracy": 1.0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0
+    },
+    {
+      "threshold": 0.7,
+      "accuracy": 1.0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0
+    },
+    {
+      "threshold": 0.75,
+      "accuracy": 1.0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0
+    },
+    {
+      "threshold": 0.8,
+      "accuracy": 0.825,
+      "precision": 1.0,
+      "recall": 0.7,
+      "f1": 0.824
+    },
+    {
+      "threshold": 0.85,
+      "accuracy": 0.621,
+      "precision": 1.0,
+      "recall": 0.35,
+      "f1": 0.519
+    },
+    {
+      "threshold": 0.9,
+      "accuracy": 0.485,
+      "precision": 1.0,
+      "recall": 0.117,
+      "f1": 0.209
+    }
+  ],
+  "comparison_with_baselines": [
+    {
+      "system": "AUFound [12]",
+      "method": "Keyword-based",
+      "accuracy": 55.0
+    },
+    {
+      "system": "CampusTrace [3]",
+      "method": "ML-based",
+      "accuracy": 60.0
+    },
+    {
+      "system": "Smart L&F Edu [2]",
+      "method": "Image-based",
+      "accuracy": 65.0
+    },
+    {
+      "system": "LostNet [13]",
+      "method": "CNN-based",
+      "accuracy": 69.8
+    },
+    {
+      "system": "Proposed System",
+      "method": "MPNet + CLIP",
+      "accuracy": 100.0
+    }
+  ]
+}

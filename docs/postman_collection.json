@@ -1,0 +1,195 @@
+{
+  "info": {
+    "name": "AI Based Lost and Found System API",
+    "_postman_id": "c1f72d4e-b5c4-4b5b-9b48-18e388d2fba1",
+    "description": "Collection covering authentication, item reporting, MPNet/CLIP matching, real-time notification, claim workflow, and admin moderation.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:5000/api",
+      "type": "string"
+    },
+    {
+      "key": "userToken",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "adminToken",
+      "value": "",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "Authentication",
+      "item": [
+        {
+          "name": "Register User",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Alice Walker\",\n  \"email\": \"alice@campus.edu\",\n  \"password\": \"UserPass123!\",\n  \"phone\": \"9876543210\"\n}"
+            },
+            "url": { "raw": "{{baseUrl}}/auth/register", "host": ["{{baseUrl}}"], "path": ["auth", "register"] }
+          }
+        },
+        {
+          "name": "Login User",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const jsonData = pm.response.json();",
+                  "if (jsonData.token) {",
+                  "  pm.collectionVariables.set('userToken', jsonData.token);",
+                  "}"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"user1@lostfound.local\",\n  \"password\": \"UserPass123!\"\n}"
+            },
+            "url": { "raw": "{{baseUrl}}/auth/login", "host": ["{{baseUrl}}"], "path": ["auth", "login"] }
+          }
+        },
+        {
+          "name": "Login Admin",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const jsonData = pm.response.json();",
+                  "if (jsonData.token) {",
+                  "  pm.collectionVariables.set('adminToken', jsonData.token);",
+                  "}"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"admin@lostfound.local\",\n  \"password\": \"AdminPass123!\"\n}"
+            },
+            "url": { "raw": "{{baseUrl}}/auth/login", "host": ["{{baseUrl}}"], "path": ["auth", "login"] }
+          }
+        },
+        {
+          "name": "Get Current Profile",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{userToken}}" }],
+            "url": { "raw": "{{baseUrl}}/auth/me", "host": ["{{baseUrl}}"], "path": ["auth", "me"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Items & Upload",
+      "item": [
+        {
+          "name": "List Public Items",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{baseUrl}}/items?status=found&page=1&limit=10", "host": ["{{baseUrl}}"], "path": ["items"], "query": [{ "key": "status", "value": "found" }, { "key": "page", "value": "1" }, { "key": "limit", "value": "10" }] }
+          }
+        },
+        {
+          "name": "Get User Items (My Items)",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{userToken}}" }],
+            "url": { "raw": "{{baseUrl}}/items/my", "host": ["{{baseUrl}}"], "path": ["items", "my"] }
+          }
+        },
+        {
+          "name": "Get Item Matches",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{userToken}}" }],
+            "url": { "raw": "{{baseUrl}}/items/:id/matches", "host": ["{{baseUrl}}"], "path": ["items", ":id", "matches"], "variable": [{ "key": "id", "value": "item_id_here" }] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Claim & Verification",
+      "item": [
+        {
+          "name": "Claim Item (This is Mine)",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Authorization", "value": "Bearer {{userToken}}" }],
+            "url": { "raw": "{{baseUrl}}/matches/:id/claim", "host": ["{{baseUrl}}"], "path": ["matches", ":id", "claim"], "variable": [{ "key": "id", "value": "match_id_here" }] }
+          }
+        },
+        {
+          "name": "Confirm Return (Finder Confirms)",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Authorization", "value": "Bearer {{userToken}}" }],
+            "url": { "raw": "{{baseUrl}}/matches/:id/confirm", "host": ["{{baseUrl}}"], "path": ["matches", ":id", "confirm"], "variable": [{ "key": "id", "value": "match_id_here" }] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Admin Panel",
+      "item": [
+        {
+          "name": "Get Dashboard Stats",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{adminToken}}" }],
+            "url": { "raw": "{{baseUrl}}/admin/stats", "host": ["{{baseUrl}}"], "path": ["admin", "stats"] }
+          }
+        },
+        {
+          "name": "List Users",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{adminToken}}" }],
+            "url": { "raw": "{{baseUrl}}/admin/users", "host": ["{{baseUrl}}"], "path": ["admin", "users"] }
+          }
+        },
+        {
+          "name": "Moderate Item",
+          "request": {
+            "method": "PUT",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{adminToken}}" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"moderation\": \"approved\"\n}"
+            },
+            "url": { "raw": "{{baseUrl}}/admin/items/:id/moderation", "host": ["{{baseUrl}}"], "path": ["admin", "items", ":id", "moderation"], "variable": [{ "key": "id", "value": "item_id_here" }] }
+          }
+        },
+        {
+          "name": "Get Model Performance Benchmarks",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{adminToken}}" }],
+            "url": { "raw": "{{baseUrl}}/admin/model-performance", "host": ["{{baseUrl}}"], "path": ["admin", "model-performance"] }
+          }
+        }
+      ]
+    }
+  ]
+}

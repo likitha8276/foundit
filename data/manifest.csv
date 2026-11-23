@@ -1,0 +1,104 @@
+pair_id,category,input_type,is_match,lost_id,lost_text,lost_image,found_id,found_text,found_image
+PAIR_001,wallet,text,1,L_001,Black leather wallet with credit cards,,F_001,Found black men's wallet near cafeteria,
+PAIR_002,phone,text,1,L_002,iPhone 13 with cracked glass screen,,F_002,Apple iPhone with cracked front screen on bus,
+PAIR_003,bag,text,1,L_003,Blue gym backpack with Nike logo,,F_003,Blue Nike sports bag in gym locker area,
+PAIR_004,bottle,text,1,L_004,Silver stainless steel water bottle,,F_004,Metal silver thermos flask found in auditorium,
+PAIR_005,keys,text,1,L_005,Toyota car key with leather fob,,F_005,Electronic car remote key on parking bench,
+PAIR_006,electronics,text,1,L_006,Sony WH-1000XM4 black headphones,,F_006,Black over-ear Bluetooth headphones in study hall,
+PAIR_007,clothing,text,1,L_007,Brown corduroy jacket size L,,F_007,Men brown winter jacket on classroom coat hook,
+PAIR_008,documents,text,1,L_008,Student university ID card Jane Smith,,F_008,Student identification card found in hallway,
+PAIR_009,other,text,1,L_009,Green ceramic coffee mug,,F_009,Green travel mug left in computer lab,
+PAIR_010,bag,text,1,L_010,Red leather handbag,,F_010,Red color bag left under library chair,
+PAIR_011,electronics,text,1,L_011,Apple MacBook Air charger 30W,,F_011,White USB-C laptop power adapter in library,
+PAIR_012,other,text,1,L_012,Black reading glasses with silver frame,,F_012,Prescription spectacles in black case,
+PAIR_013,phone,text,1,L_013,Samsung Galaxy S22 olive green,,F_013,Green Samsung Android smartphone in canteen,
+PAIR_014,clothing,text,1,L_014,Grey knit woolen scarf,,F_014,Winter grey woolen muffler on campus bench,
+PAIR_015,documents,text,1,L_015,Passport in brown leather holder,,F_015,Travel passport document found near entrance gate,
+PAIR_016,keys,text,1,L_016,Bicycle lock keys with yellow tag,,F_016,Set of brass padlock keys with yellow plastic tag,
+PAIR_017,bottle,text,1,L_017,Hydro Flask wide mouth yellow bottle,,F_017,Yellow insulated water container on sports field,
+PAIR_018,electronics,text,1,L_018,Logitech wireless presenter clicker,,F_018,Black slide presentation remote in seminar room,
+PAIR_019,wallet,text,1,L_019,Black bifold cardholder with ID window,,F_019,Slim black card pouch found at ATM kiosk,
+PAIR_020,electronics,text,1,L_020,Graphing calculator TI-84 Plus,,F_020,Texas Instruments scientific calculator in math dept,
+PAIR_021,wallet,image,1,L_021,,lost_021.jpg,F_021,,found_021.jpg
+PAIR_022,phone,image,1,L_022,,lost_022.jpg,F_022,,found_022.jpg
+PAIR_023,bag,image,1,L_023,,lost_023.jpg,F_023,,found_023.jpg
+PAIR_024,bottle,image,1,L_024,,lost_024.jpg,F_024,,found_024.jpg
+PAIR_025,keys,image,1,L_025,,lost_025.jpg,F_025,,found_025.jpg
+PAIR_026,electronics,image,1,L_026,,lost_026.jpg,F_026,,found_026.jpg
+PAIR_027,clothing,image,1,L_027,,lost_027.jpg,F_027,,found_027.jpg
+PAIR_028,documents,image,1,L_028,,lost_028.jpg,F_028,,found_028.jpg
+PAIR_029,other,image,1,L_029,,lost_029.jpg,F_029,,found_029.jpg
+PAIR_030,bag,image,1,L_030,,lost_030.jpg,F_030,,found_030.jpg
+PAIR_031,electronics,image,1,L_031,,lost_031.jpg,F_031,,found_031.jpg
+PAIR_032,other,image,1,L_032,,lost_032.jpg,F_032,,found_032.jpg
+PAIR_033,electronics,image,1,L_033,,lost_033.jpg,F_033,,found_033.jpg
+PAIR_034,clothing,image,1,L_034,,lost_034.jpg,F_034,,found_034.jpg
+PAIR_035,documents,image,1,L_035,,lost_035.jpg,F_035,,found_035.jpg
+PAIR_036,keys,image,1,L_036,,lost_036.jpg,F_036,,found_036.jpg
+PAIR_037,bottle,image,1,L_037,,lost_037.jpg,F_037,,found_037.jpg
+PAIR_038,electronics,image,1,L_038,,lost_038.jpg,F_038,,found_038.jpg
+PAIR_039,wallet,image,1,L_039,,lost_039.jpg,F_039,,found_039.jpg
+PAIR_040,other,image,1,L_040,,lost_040.jpg,F_040,,found_040.jpg
+PAIR_041,wallet,hybrid,1,L_041,Black men leather wallet containing cards,lost_041.jpg,F_041,Black leather wallet found near library,found_041.jpg
+PAIR_042,phone,hybrid,1,L_042,iPhone 14 midnight blue in clear case,lost_042.jpg,F_042,Blue Apple phone with clear bumper case,found_042.jpg
+PAIR_043,bag,hybrid,1,L_043,Red and black Nike gym bag,lost_043.jpg,F_043,Red sport duffel bag left in locker,found_043.jpg
+PAIR_044,bottle,hybrid,1,L_044,Blue and black sipper bottle,lost_044.jpg,F_044,Blue sipper water bottle found in court,found_044.jpg
+PAIR_045,keys,hybrid,1,L_045,Honda car remote key with red lanyard,lost_045.jpg,F_045,Car key fob with red fabric strap,found_045.jpg
+PAIR_046,electronics,hybrid,1,L_046,Bose QuietComfort black headphones,lost_046.jpg,F_046,Black noise cancelling over-ear headphones,found_046.jpg
+PAIR_047,clothing,hybrid,1,L_047,Black North Face fleece jacket,lost_047.jpg,F_047,Black zip-up fleece jacket in cafeteria,found_047.jpg
+PAIR_048,documents,hybrid,1,L_048,Student university library card,lost_048.jpg,F_048,Laminated library registration card,found_048.jpg
+PAIR_049,other,hybrid,1,L_049,Brown sunglasses in hard leather case,lost_049.jpg,F_049,Brown polarized shades in case,found_049.jpg
+PAIR_050,bag,hybrid,1,L_050,Orange canvas tote bag with books,lost_050.jpg,F_050,Orange cotton shopping tote on stairs,found_050.jpg
+PAIR_051,electronics,hybrid,1,L_051,Dell 65W barrel pin laptop charger,lost_051.jpg,F_051,Black Dell notebook power supply adapter,found_051.jpg
+PAIR_052,other,hybrid,1,L_052,Metal silver ballpoint pen engraved,lost_052.jpg,F_052,Engraved metallic silver executive pen,found_052.jpg
+PAIR_053,phone,hybrid,1,L_053,Google Pixel 7 lemongrass green,lost_053.jpg,F_053,Pale green Android phone found on bench,found_053.jpg
+PAIR_054,clothing,hybrid,1,L_054,Knitted yellow beanie hat,lost_054.jpg,F_054,Yellow winter knit skullcap in lecture hall,found_054.jpg
+PAIR_055,documents,hybrid,1,L_055,Government identity national card,lost_055.jpg,F_055,Official ID card badge in leather sleeve,found_055.jpg
+PAIR_056,keys,hybrid,1,L_056,Set of 3 Yale brass padlock keys,lost_056.jpg,F_056,Three brass door keys on steel ring,found_056.jpg
+PAIR_057,bottle,hybrid,1,L_057,Contigo pink travel coffee tumbler,lost_057.jpg,F_057,Pink insulated thermal travel mug,found_057.jpg
+PAIR_058,electronics,hybrid,1,L_058,Kindle Paperwhite e-reader in black cover,lost_058.jpg,F_058,Amazon Kindle reader with black flip case,found_058.jpg
+PAIR_059,wallet,hybrid,1,L_059,Tan leather bifold wallet with cash,lost_059.jpg,F_059,Brown tan wallet with paper currency inside,found_059.jpg
+PAIR_060,other,hybrid,1,L_060,Black folding umbrella with curved handle,lost_060.jpg,F_060,Classic black umbrella with wooden hook handle,found_060.jpg
+NEG_001,wallet,text,0,L_001,Black leather wallet with credit cards,,F_014,Winter grey woolen muffler on campus bench,
+NEG_002,phone,text,0,L_002,iPhone 13 with cracked glass screen,,F_015,Travel passport document found near entrance gate,
+NEG_003,bag,text,0,L_003,Blue gym backpack with Nike logo,,F_016,Set of brass padlock keys with yellow plastic tag,
+NEG_005,keys,text,0,L_005,Toyota car key with leather fob,,F_018,Black slide presentation remote in seminar room,
+NEG_006,electronics,text,0,L_006,Sony WH-1000XM4 black headphones,,F_019,Slim black card pouch found at ATM kiosk,
+NEG_007,clothing,text,0,L_007,Brown corduroy jacket size L,,F_020,Texas Instruments scientific calculator in math dept,
+NEG_008,documents,text,0,L_008,Student university ID card Jane Smith,,F_021,,found_021.jpg
+NEG_009,other,text,0,L_009,Green ceramic coffee mug,,F_022,,found_022.jpg
+NEG_011,electronics,text,0,L_011,Apple MacBook Air charger 30W,,F_024,,found_024.jpg
+NEG_012,other,text,0,L_012,Black reading glasses with silver frame,,F_025,,found_025.jpg
+NEG_013,phone,text,0,L_013,Samsung Galaxy S22 olive green,,F_026,,found_026.jpg
+NEG_016,keys,text,0,L_016,Bicycle lock keys with yellow tag,,F_029,,found_029.jpg
+NEG_017,bottle,text,0,L_017,Hydro Flask wide mouth yellow bottle,,F_030,,found_030.jpg
+NEG_019,wallet,text,0,L_019,Black bifold cardholder with ID window,,F_032,,found_032.jpg
+NEG_021,wallet,image,0,L_021,,lost_021.jpg,F_034,,found_034.jpg
+NEG_022,phone,image,0,L_022,,lost_022.jpg,F_035,,found_035.jpg
+NEG_023,bag,image,0,L_023,,lost_023.jpg,F_036,,found_036.jpg
+NEG_025,keys,image,0,L_025,,lost_025.jpg,F_038,,found_038.jpg
+NEG_026,electronics,image,0,L_026,,lost_026.jpg,F_039,,found_039.jpg
+NEG_027,clothing,image,0,L_027,,lost_027.jpg,F_040,,found_040.jpg
+NEG_028,documents,image,0,L_028,,lost_028.jpg,F_041,Black leather wallet found near library,found_041.jpg
+NEG_029,other,image,0,L_029,,lost_029.jpg,F_042,Blue Apple phone with clear bumper case,found_042.jpg
+NEG_031,electronics,image,0,L_031,,lost_031.jpg,F_044,Blue sipper water bottle found in court,found_044.jpg
+NEG_032,other,image,0,L_032,,lost_032.jpg,F_045,Car key fob with red fabric strap,found_045.jpg
+NEG_036,keys,image,0,L_036,,lost_036.jpg,F_049,Brown polarized shades in case,found_049.jpg
+NEG_037,bottle,image,0,L_037,,lost_037.jpg,F_050,Orange cotton shopping tote on stairs,found_050.jpg
+NEG_039,wallet,image,0,L_039,,lost_039.jpg,F_052,Engraved metallic silver executive pen,found_052.jpg
+NEG_040,other,image,0,L_040,,lost_040.jpg,F_053,Pale green Android phone found on bench,found_053.jpg
+NEG_041,wallet,hybrid,0,L_041,Black men leather wallet containing cards,lost_041.jpg,F_054,Yellow winter knit skullcap in lecture hall,found_054.jpg
+NEG_042,phone,hybrid,0,L_042,iPhone 14 midnight blue in clear case,lost_042.jpg,F_055,Official ID card badge in leather sleeve,found_055.jpg
+NEG_043,bag,hybrid,0,L_043,Red and black Nike gym bag,lost_043.jpg,F_056,Three brass door keys on steel ring,found_056.jpg
+NEG_045,keys,hybrid,0,L_045,Honda car remote key with red lanyard,lost_045.jpg,F_058,Amazon Kindle reader with black flip case,found_058.jpg
+NEG_046,electronics,hybrid,0,L_046,Bose QuietComfort black headphones,lost_046.jpg,F_059,Brown tan wallet with paper currency inside,found_059.jpg
+NEG_047,clothing,hybrid,0,L_047,Black North Face fleece jacket,lost_047.jpg,F_060,Classic black umbrella with wooden hook handle,found_060.jpg
+NEG_048,documents,hybrid,0,L_048,Student university library card,lost_048.jpg,F_001,Found black men's wallet near cafeteria,
+NEG_049,other,hybrid,0,L_049,Brown sunglasses in hard leather case,lost_049.jpg,F_002,Apple iPhone with cracked front screen on bus,
+NEG_051,electronics,hybrid,0,L_051,Dell 65W barrel pin laptop charger,lost_051.jpg,F_004,Metal silver thermos flask found in auditorium,
+NEG_052,other,hybrid,0,L_052,Metal silver ballpoint pen engraved,lost_052.jpg,F_005,Electronic car remote key on parking bench,
+NEG_053,phone,hybrid,0,L_053,Google Pixel 7 lemongrass green,lost_053.jpg,F_006,Black over-ear Bluetooth headphones in study hall,
+NEG_056,keys,hybrid,0,L_056,Set of 3 Yale brass padlock keys,lost_056.jpg,F_009,Green travel mug left in computer lab,
+NEG_057,bottle,hybrid,0,L_057,Contigo pink travel coffee tumbler,lost_057.jpg,F_010,Red color bag left under library chair,
+NEG_059,wallet,hybrid,0,L_059,Tan leather bifold wallet with cash,lost_059.jpg,F_012,Prescription spectacles in black case,
+NEG_060,other,hybrid,0,L_060,Black folding umbrella with curved handle,lost_060.jpg,F_013,Green Samsung Android smartphone in canteen,
