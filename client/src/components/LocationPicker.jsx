@@ -182,7 +182,7 @@ export default function LocationPicker({
             type="text"
             value={locationName || ''}
             onChange={(e) => onChange({ locationName: e.target.value })}
-            placeholder="e.g. Central Library 2nd floor, Student Center, Room 204"
+            placeholder="e.g. Metro Station Concourse, City Plaza Benches, Coffee Shop"
             className="w-full px-3 py-2 bg-paper-card border border-paper-border rounded-[2px] text-xs text-ink placeholder:text-ink-faint focus:outline-none focus:border-rust"
           />
         </div>

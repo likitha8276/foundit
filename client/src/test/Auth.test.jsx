@@ -22,7 +22,7 @@ describe('Client Authentication Pages', () => {
     renderWithProviders(<Login />);
 
     expect(screen.getByText(/Welcome Back/i)).toBeInTheDocument();
-    expect(screen.getByPlaceholderText(/you@campus.edu/i)).toBeInTheDocument();
+    expect(screen.getByPlaceholderText(/you@example.com/i)).toBeInTheDocument();
     expect(screen.getByPlaceholderText(/••••••••/i)).toBeInTheDocument();
     expect(screen.getByRole('button', { name: /Sign In/i })).toBeInTheDocument();
     expect(screen.getByText(/Demo User/i)).toBeInTheDocument();
@@ -34,7 +34,7 @@ describe('Client Authentication Pages', () => {
 
     expect(screen.getByText(/Create an Account/i)).toBeInTheDocument();
     expect(screen.getByPlaceholderText(/Jane Doe/i)).toBeInTheDocument();
-    expect(screen.getByPlaceholderText(/jane@campus.edu/i)).toBeInTheDocument();
+    expect(screen.getByPlaceholderText(/jane@example.com/i)).toBeInTheDocument();
     expect(screen.getByRole('button', { name: /Create Account/i })).toBeInTheDocument();
   });
 });

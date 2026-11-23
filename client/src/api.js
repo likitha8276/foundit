@@ -1,22 +1,21 @@
-// Universal Lost & Found API Client with Geolocation & AI Matching
-
+// Universal Lost & Found API Client with Geolocation
 const API_BASE_URL = import.meta.env.VITE_API_URL || (typeof window !== 'undefined' && !window.location.hostname.includes('localhost') && !window.location.hostname.includes('127.0.0.1') ? '/api' : 'http://127.0.0.1:5000/api');
 
-// Base coordinates for central campus / hub (used as map center anchor)
+// Base coordinates for central area / hub (used as map center anchor)
 export const DEFAULT_MAP_CENTER = [16.4971, 80.5002]; // [lat, lng]
 
 export const MOCK_ITEMS = [
   {
     id: 'item-001',
     name: 'Casio fx-991EX Classwiz Calculator',
-    description: 'Black scientific calculator with slide-on protective hard case. Left on desk in Engineering Hall Room 304 after math exam.',
+    description: 'Black scientific calculator with slide-on protective hard case. Left on desk near transit concourse seating.',
     category: 'Electronics',
     status: 'FOUND',
-    location: 'Engineering Hall Room 304',
+    location: 'Metro Station Concourse',
     lat: 16.4974,
     lng: 80.5005,
     radiusMeters: 150,
-    currentHolding: 'Building 1 Security Desk',
+    currentHolding: 'Station Customer Service Desk',
     timeAgo: '3 hours ago',
     date: '2026-11-21',
     rotation: '-1deg',
@@ -25,20 +24,20 @@ export const MOCK_ITEMS = [
     photoUrl: 'https://images.unsplash.com/photo-1594980596870-8aa52a78d8cd?w=600&auto=format&fit=crop&q=80',
     contact: {
       finderName: 'Siddharth M.',
-      note: 'Available near main floor security desk until 5 PM'
+      note: 'Available near station customer service desk until 6 PM'
     }
   },
   {
     id: 'item-002',
     name: 'Blue Milton Thermosteel Bottle (750ml)',
-    description: 'Dark blue stainless steel insulated water bottle with slight scratch on bottom rim. Left in 2nd floor silent reading wing.',
+    description: 'Dark blue stainless steel insulated water bottle with slight scratch on bottom rim. Left on table in 2nd floor reading room.',
     category: 'Bottles',
     status: 'FOUND',
-    location: 'Central Library, 2nd Floor',
+    location: 'Public Library, 2nd Floor',
     lat: 16.4968,
     lng: 80.4998,
     radiusMeters: 200,
-    currentHolding: 'Library Front Desk',
+    currentHolding: 'Front Information Desk',
     timeAgo: 'Yesterday · Library',
     date: '2026-11-20',
     rotation: '1.2deg',
@@ -47,7 +46,7 @@ export const MOCK_ITEMS = [
     photoUrl: 'https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=600&auto=format&fit=crop&q=80',
     contact: {
       finderName: 'Library Staff',
-      note: 'Collect during open hours with ID verification'
+      note: 'Collect during open hours with verification'
     }
   },
   {
@@ -56,12 +55,12 @@ export const MOCK_ITEMS = [
     description: 'White case with matte silicone black protective cover. Earbuds not inside, charging case only.',
     category: 'Electronics',
     status: 'FOUND',
-    location: 'Central Courtyard stone benches',
+    location: 'City Park stone benches',
     lat: 16.4981,
     lng: 80.5012,
     radiusMeters: 250,
-    currentHolding: 'With finder (West Residence Hall)',
-    timeAgo: 'Yesterday · Central Courtyard',
+    currentHolding: 'With finder (Downtown area)',
+    timeAgo: 'Yesterday · City Park',
     date: '2026-11-20',
     rotation: '-1.5deg',
     hasTape: true,
@@ -69,27 +68,27 @@ export const MOCK_ITEMS = [
     photoUrl: 'https://images.unsplash.com/photo-1600294037681-c80b4cb5b434?w=600&auto=format&fit=crop&q=80',
     contact: {
       finderName: 'Karthik R.',
-      note: 'Message me or collect from West Residence entrance'
+      note: 'Message to verify and arrange handover'
     }
   },
   {
     id: 'item-004',
-    name: 'Student ID Card & Lanyard',
+    name: 'ID Card Holder & Lanyard',
     description: 'Red departmental lanyard with clear cardholder sleeve. Badge number ending in 0428.',
     category: 'Documents',
     status: 'FOUND',
-    location: 'Campus Dining Hall juice counter',
+    location: 'Downtown Food Plaza',
     lat: 16.4962,
     lng: 80.5008,
     radiusMeters: 100,
-    currentHolding: 'Dining Hall Manager Desk',
-    timeAgo: '2 days ago · Dining Hall',
+    currentHolding: 'Food Plaza Management Desk',
+    timeAgo: '2 days ago · Food Plaza',
     date: '2026-11-19',
     rotation: '0.8deg',
     hasPin: true,
     hasPhoto: false,
     contact: {
-      finderName: 'Counter Supervisor',
+      finderName: 'Supervisor Desk',
       note: 'Held in register drawer'
     }
   },
@@ -99,33 +98,33 @@ export const MOCK_ITEMS = [
     description: 'Standard brass lock key attached to circular yellow acrylic tag stamped 412.',
     category: 'Keys',
     status: 'FOUND',
-    location: 'West Walkway near Transit Bay',
+    location: 'West Walkway near Transit Stop',
     lat: 16.4955,
     lng: 80.4990,
     radiusMeters: 300,
-    currentHolding: 'Residence Office',
+    currentHolding: 'Community Center Office',
     timeAgo: '2 days ago · Transit Walkway',
     date: '2026-11-19',
     rotation: '-0.5deg',
     hasPin: true,
     hasPhoto: false,
     contact: {
-      finderName: 'Security Officer',
+      finderName: 'Officer on Duty',
       note: 'Sign recovery log at reception'
     }
   },
   {
     id: 'item-006',
     name: 'Wireless Bluetooth Earbud (Left)',
-    description: 'Single black wireless earbud with lime green accent. Left on bench outside Computer Lab 1.',
+    description: 'Single black wireless earbud with lime green accent. Left on bench outside conference hall.',
     category: 'Electronics',
     status: 'FOUND',
-    location: 'Science & Tech Complex Lobby',
+    location: 'Civic Center Lobby',
     lat: 16.4985,
     lng: 80.4995,
     radiusMeters: 180,
     currentHolding: 'With finder',
-    timeAgo: '3 days ago · Science Complex',
+    timeAgo: '3 days ago · Civic Center',
     date: '2026-11-18',
     rotation: '1.5deg',
     hasTape: true,
@@ -141,12 +140,12 @@ export const MOCK_ITEMS = [
     description: 'Three-fold windproof blue umbrella with curved wooden handle. Left in umbrella rack.',
     category: 'Other',
     status: 'FOUND',
-    location: 'Administration Building Porch',
+    location: 'City Hall Entrance Plaza',
     lat: 16.4970,
     lng: 80.5018,
     radiusMeters: 120,
     currentHolding: 'Main Entrance Security',
-    timeAgo: '3 days ago · Admin Porch',
+    timeAgo: '3 days ago · Entrance Plaza',
     date: '2026-11-18',
     rotation: '-1deg',
     hasPin: true,
@@ -160,10 +159,10 @@ export const MOCK_ITEMS = [
   {
     id: 'item-008',
     name: 'Analog Black Leather Watch',
-    description: 'Square dial watch with black-brown stitched leather band. Found on gym bleacher.',
+    description: 'Square dial watch with black-brown stitched leather band. Found on seating bench.',
     category: 'Accessories',
     status: 'CLAIMED',
-    location: 'Indoor Recreation Complex',
+    location: 'Downtown Recreation Complex',
     lat: 16.4990,
     lng: 80.5025,
     radiusMeters: 200,
@@ -174,8 +173,8 @@ export const MOCK_ITEMS = [
     hasPin: true,
     hasPhoto: false,
     contact: {
-      finderName: 'Coach Staff',
-      note: 'Claimed by student with valid ID'
+      finderName: 'Facility Staff',
+      note: 'Claimed by verified owner'
     }
   }
 ];
@@ -222,7 +221,7 @@ export async function getItems({ category, query, lat, lng, radiusMeters } = {})
             status: (it.status || 'FOUND').toUpperCase(),
             lat: itemLat,
             lng: itemLng,
-            location: (it.location?.name && it.location.name.trim()) ? it.location.name : (it.location || 'Central Campus / Hub'),
+            location: (it.location?.name && it.location.name.trim()) ? it.location.name : (it.location || 'Downtown Hub / Central Area'),
             timeAgo: it.timeAgo || 'Recently posted',
             photoUrl: it.imageUrl || it.photoUrl,
             hasPhoto: Boolean(it.imageUrl || it.photoUrl),
@@ -274,7 +273,7 @@ export async function getItemById(id) {
         status: (it.status || 'FOUND').toUpperCase(),
         lat: itemLat,
         lng: itemLng,
-        location: (it.location?.name && it.location.name.trim()) ? it.location.name : (it.location || 'Central Campus / Hub'),
+        location: (it.location?.name && it.location.name.trim()) ? it.location.name : (it.location || 'Downtown Hub / Central Area'),
         photoUrl: it.imageUrl || it.photoUrl,
         hasPhoto: Boolean(it.imageUrl || it.photoUrl)
       };

@@ -145,8 +145,8 @@ export default function UploadItem() {
         </h1>
         <p className="text-sm text-ink-muted mt-2">
           {status === 'lost'
-            ? "Pin your lost item on the campus board. We'll notify you if someone posts a matching item."
-            : 'Post details of the item you found on campus. The owner can verify and arrange a pickup.'}
+            ? "Pin your lost item on the notice board. We'll notify you if someone posts a matching item."
+            : 'Post details of the item you found. The owner can verify and arrange a pickup.'}
         </p>
 
         {/* Status Toggle */}

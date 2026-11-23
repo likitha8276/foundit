@@ -105,7 +105,7 @@ export default function Register() {
                 required
                 value={formData.email}
                 onChange={handleChange}
-                placeholder="jane@campus.edu"
+                placeholder="jane@example.com"
                 className="input-field pl-9"
               />
             </div>
