@@ -16,14 +16,22 @@ const logger = pino({
 let memoryServer = null;
 
 async function connectDB() {
+  if (mongoose.connection.readyState >= 1) {
+    return;
+  }
+
   try {
-    // First attempt to connect to the configured URI with a 2-second timeout
+    // Attempt to connect to the configured URI
     logger.info(`Attempting to connect to MongoDB at ${env.MONGODB_URI}...`);
     await mongoose.connect(env.MONGODB_URI, {
-      serverSelectionTimeoutMS: 2000
+      serverSelectionTimeoutMS: 5000
     });
     logger.info('Connected to MongoDB successfully.');
   } catch (err) {
+    if (process.env.VERCEL) {
+      logger.error('Failed to connect to MongoDB on Vercel:', err.message);
+      throw err;
+    }
     logger.warn(`Could not connect to external MongoDB (${err.message}). Starting in-memory MongoDB instance...`);
     try {
       const { MongoMemoryServer } = require('mongodb-memory-server');
