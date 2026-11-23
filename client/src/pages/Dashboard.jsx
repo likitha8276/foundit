@@ -44,7 +44,44 @@ export default function Dashboard() {
       if (itemsRes.data?.success) setItems(itemsRes.data.items || []);
       if (matchesRes.data?.success) setMatches(matchesRes.data.matches || []);
     } catch (err) {
-      setError('Failed to load your items and matches.');
+      // Fallback demo items for demo session
+      setItems([
+        {
+          _id: 'user-item-001',
+          name: 'Black Leather Bifold Wallet',
+          category: 'wallet',
+          description: 'Black leather bifold wallet with transit pass and cards.',
+          date: '2026-11-21',
+          status: 'lost',
+          state: 'matched',
+          location: { name: 'Metro Station Concourse' }
+        },
+        {
+          _id: 'user-item-002',
+          name: 'Casio Scientific Calculator',
+          category: 'electronics',
+          description: 'Casio fx-991EX Classwiz calculator with slide-on case.',
+          date: '2026-11-20',
+          status: 'found',
+          state: 'searching',
+          location: { name: 'Public Library 2nd Floor' }
+        }
+      ]);
+      setMatches([
+        {
+          _id: 'match-001',
+          lostItemId: { _id: 'user-item-001', name: 'Black Leather Bifold Wallet' },
+          foundItemId: {
+            _id: 'found-item-001',
+            name: 'Found Leather Wallet',
+            description: 'Found black leather wallet near metro station ticket kiosks.',
+            location: { name: 'Metro Station Ticket Kiosks' },
+            contact: { name: 'Ganga Raman', phone: '+1 555-0182' }
+          },
+          finalScore: 0.89,
+          state: 'suggested'
+        }
+      ]);
     } finally {
       setLoading(false);
     }

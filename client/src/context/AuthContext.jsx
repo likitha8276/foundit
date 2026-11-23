@@ -14,13 +14,21 @@ export function AuthProvider({ children }) {
   useEffect(() => {
     async function verifyUser() {
       if (token) {
+        // If it is a demo token, preserve the user without making an API call that would fail and log out
+        if (token.startsWith('demo-') || token.startsWith('mock-')) {
+          setLoading(false);
+          return;
+        }
+
         try {
           const res = await api.get('/auth/me');
           setUser(res.data.user);
           localStorage.setItem('user', JSON.stringify(res.data.user));
         } catch (err) {
           console.error('Session verification failed:', err);
-          logout();
+          if (err.response && (err.response.status === 401 || err.response.status === 403)) {
+            logout();
+          }
         }
       }
       setLoading(false);
