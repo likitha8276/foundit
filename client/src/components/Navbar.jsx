@@ -16,15 +16,15 @@ export default function Navbar() {
                 FoundIT
               </span>
               <span className="hidden sm:inline-block text-xs uppercase tracking-wider text-ink-muted border-l border-paper-border pl-2 font-mono">
-                AI &amp; Proximity Lost &amp; Found
+                College Lost &amp; Found
               </span>
             </Link>
           </div>
 
-          {/* Center: Live Proximity Badge */}
+          {/* Center: Live Campus Badge */}
           <div className="hidden md:flex items-center gap-2 text-xs text-ink-muted bg-paper-card border border-paper-border px-3 py-1 rounded-[2px]">
             <span className="inline-block w-2 h-2 rounded-full bg-rust animate-pulse" />
-            <span>GPS Proximity &amp; AI Multimodal Matching Active</span>
+            <span>Campus Community Notice Board · Active</span>
           </div>
 
           {/* Right Navigation */}

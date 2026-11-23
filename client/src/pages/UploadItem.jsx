@@ -145,8 +145,8 @@ export default function UploadItem() {
         </h1>
         <p className="text-sm text-ink-muted mt-2">
           {status === 'lost'
-            ? 'Pin your lost item with description and location. The system scans nearby reports and notifies you of high-confidence matches.'
-            : 'Post details of the item you found. The owner will be able to verify and initiate a return.'}
+            ? "Pin your lost item on the campus board. We'll notify you if someone posts a matching item."
+            : 'Post details of the item you found on campus. The owner can verify and arrange a pickup.'}
         </p>
 
         {/* Status Toggle */}

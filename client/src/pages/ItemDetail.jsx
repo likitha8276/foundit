@@ -147,11 +147,11 @@ export default function ItemDetail() {
             </div>
           </div>
 
-          {/* AI Semantic & Proximity Matches */}
+          {/* Campus Matches */}
           <div className="notice-card p-6 bg-paper-card border border-paper-border rounded-[2px] space-y-4">
             <div className="flex items-center justify-between border-b border-paper-border pb-2.5">
               <h3 className="font-serif text-base font-bold text-ink">
-                AI &amp; Proximity Matches
+                Possible Matches on Campus
               </h3>
               <span className="text-[11px] font-mono text-ink-muted">
                 {matches.length} Candidates
@@ -159,7 +159,7 @@ export default function ItemDetail() {
             </div>
 
             <p className="text-xs text-ink-muted leading-relaxed">
-              Nearby items detected through MPNet text descriptions and GPS radius overlap:
+              Items reported around campus that match this description:
             </p>
 
             <div className="space-y-3">

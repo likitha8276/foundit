@@ -42,19 +42,19 @@ export default function Landing() {
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
       {/* 1. ASYMMETRIC EDITORIAL HEADER */}
       <section className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start pb-10 border-b border-paper-border">
-        {/* Left Column: Heading, Core Actions & AI Value Prop */}
+        {/* Left Column: Heading, Core Actions & Campus Value Prop */}
         <div className="lg:col-span-7 space-y-6">
           <div className="inline-flex items-center gap-2 px-2.5 py-1 text-[11px] font-mono uppercase tracking-wider text-ink-muted bg-paper-card border border-paper-border rounded-[2px]">
             <span className="w-1.5 h-1.5 rounded-full bg-rust" />
-            <span>AI Multimodal Semantic Search + GPS Proximity Matching</span>
+            <span>Campus Community Notice Board · Live Feed</span>
           </div>
 
           <h1 className="font-serif text-3xl sm:text-5xl font-bold tracking-tight text-ink leading-[1.15]">
-            Recover lost items faster with AI and proximity.
+            Lost something on campus? Someone probably found it.
           </h1>
 
           <p className="text-base sm:text-lg text-ink-muted max-w-xl leading-relaxed">
-            Report what you lost or found with a photo and location pin. Our dual MPNet &amp; CLIP models match descriptions and photos against nearby reports in real time.
+            Report lost or found belongings across academic blocks, library, food courts, and hostels. If a match is found nearby, we connect you safely.
           </p>
 
           <div className="flex flex-wrap items-center gap-3 pt-2">
@@ -94,10 +94,10 @@ export default function Landing() {
 
             <div className="flex items-baseline justify-between border-b border-paper-border pb-3 mb-4">
               <span className="text-xs uppercase font-mono tracking-wider text-ink-muted">
-                System Dispatch
+                Campus Dispatch
               </span>
               <span className="text-[11px] text-ink-faint">
-                Live Matching Active
+                Updated Today
               </span>
             </div>
 
@@ -106,22 +106,22 @@ export default function Landing() {
                 14
               </span>
               <span className="text-sm font-medium text-ink leading-snug">
-                items waiting to be claimed nearby this week
+                items waiting to be claimed on campus this week
               </span>
             </div>
 
             <div className="space-y-2 mt-4 text-xs text-ink-muted border-t border-paper-border/60 pt-3">
               <div className="flex items-center justify-between">
-                <span>• Average AI match confidence</span>
-                <span className="font-mono text-ink font-semibold">91.4%</span>
+                <span>• Items returned to owners this month</span>
+                <span className="font-mono text-ink font-semibold">38 items</span>
               </div>
               <div className="flex items-center justify-between">
-                <span>• Average proximity distance</span>
-                <span className="font-mono text-ink font-semibold">180 meters</span>
-              </div>
-              <div className="flex items-center justify-between">
-                <span>• Handed in to verified collection desks</span>
+                <span>• Handed in to Security / Dept desks</span>
                 <span className="font-mono text-ink font-semibold">6 items</span>
+              </div>
+              <div className="flex items-center justify-between">
+                <span>• Common items: Calculators, IDs, Earbuds</span>
+                <span className="font-mono text-ink font-semibold">Active</span>
               </div>
             </div>
 
@@ -215,7 +215,7 @@ export default function Landing() {
           </div>
         ) : loading ? (
           <div className="p-12 text-center text-sm text-ink-muted font-mono bg-paper-card border border-paper-border rounded-[2px]">
-            Running proximity scans and loading notice records...
+            Checking campus notice records...
           </div>
         ) : items.length === 0 ? (
           <div className="p-12 sm:p-16 text-center bg-paper-card border border-paper-border rounded-[2px] space-y-3">
