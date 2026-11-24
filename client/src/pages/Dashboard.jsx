@@ -165,22 +165,31 @@ export default function Dashboard() {
   });
 
   return (
-    <div className="max-w-6xl mx-auto px-4 py-8">
-      {/* Top Header / Action Bar (Paper Fig. 6 style) */}
-      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 pb-6 border-b border-slate-200 dark:border-slate-700">
-        <div>
-          <h1 className="text-2xl font-bold text-slate-900 dark:text-white">
-            Your Uploaded Items
-          </h1>
-          <p className="text-sm text-slate-500 dark:text-slate-400 mt-0.5">
-            Logged in as <span className="font-semibold text-slate-800 dark:text-slate-200">{user?.name}</span> ({user?.email})
-          </p>
+    <div className="max-w-6xl mx-auto px-4 py-8 sm:py-12 space-y-8">
+      {/* Top Profile / User Banner (Matching the reference screenshot style) */}
+      <div className="bg-white rounded-3xl p-6 sm:p-8 border border-theme-border shadow-soft flex flex-col md:flex-row items-center md:items-start justify-between gap-6">
+        <div className="flex flex-col sm:flex-row items-center sm:items-start gap-5 text-center sm:text-left">
+          <div className="w-20 h-20 rounded-full bg-sage-100 border-2 border-sage-300 p-1 flex items-center justify-center text-3xl shadow-xs">
+            🌱
+          </div>
+          <div className="space-y-1.5">
+            <div className="inline-flex items-center gap-1.5 px-3 py-0.5 text-[11px] font-bold text-sage-800 bg-sage-50 border border-sage-200 rounded-full">
+              <span>Community Member</span>
+            </div>
+            <h1 className="text-2xl sm:text-3xl font-bold text-ink">
+              {user?.name || 'Community Member'}
+            </h1>
+            <div className="green-bar mx-auto sm:mx-0 mt-1" />
+            <p className="text-xs text-ink-muted pt-1">
+              Email: <span className="font-medium text-ink">{user?.email}</span> {user?.phone && `· Phone: ${user?.phone}`}
+            </p>
+          </div>
         </div>
 
         <div className="flex items-center gap-3">
           <Link
             to="/upload"
-            className="btn-primary flex items-center gap-1.5 py-2 px-4 shadow-sm"
+            className="inline-flex items-center gap-2 px-5 py-2.5 bg-sage-500 hover:bg-sage-600 text-white font-semibold text-xs rounded-full shadow-xs transition-all hover:shadow-soft"
           >
             <PlusCircle className="w-4 h-4" />
             <span>Upload New Item</span>
@@ -191,7 +200,7 @@ export default function Dashboard() {
               logout();
               navigate('/login');
             }}
-            className="btn-secondary py-2 px-3 text-red-600 hover:text-red-700 hover:bg-red-50 dark:hover:bg-red-950/30 border-red-200 dark:border-red-900/50 flex items-center gap-1.5"
+            className="inline-flex items-center gap-2 px-4 py-2.5 text-xs font-semibold text-red-600 hover:text-red-700 bg-red-50 hover:bg-red-100 border border-red-200 rounded-full transition-colors"
           >
             <LogOut className="w-4 h-4" />
             <span>Logout</span>
@@ -201,23 +210,23 @@ export default function Dashboard() {
 
       {/* Alerts */}
       {justReported && (
-        <div className="mt-4 p-3 rounded-lg bg-green-50 dark:bg-green-950/40 border border-green-200 dark:border-green-800 text-green-800 dark:text-green-300 text-sm flex items-center gap-2">
-          <CheckCircle2 className="w-4 h-4 flex-shrink-0" />
-          <span>Your item report was successfully recorded and submitted for matching.</span>
+        <div className="p-4 rounded-2xl bg-sage-50 border border-sage-200 text-sage-800 text-xs font-medium flex items-center gap-2 shadow-xs">
+          <CheckCircle2 className="w-4 h-4 flex-shrink-0 text-sage-600" />
+          <span>Your item report was successfully recorded and submitted to the AI matching engine.</span>
         </div>
       )}
 
       {actionMessage && (
-        <div className="mt-4 p-3 rounded-lg bg-primary-50 dark:bg-primary-950/40 border border-primary-200 dark:border-primary-800 text-primary-800 dark:text-primary-300 text-sm flex items-center justify-between">
+        <div className="p-4 rounded-2xl bg-sage-50 border border-sage-200 text-sage-800 text-xs font-medium flex items-center justify-between shadow-xs">
           <span>{actionMessage}</span>
-          <button onClick={() => setActionMessage('')} className="text-xs font-bold text-primary-600">✕</button>
+          <button onClick={() => setActionMessage('')} className="text-xs font-bold text-sage-600 hover:text-sage-800">✕</button>
         </div>
       )}
 
       {error && (
-        <div className="mt-4 p-3 rounded-lg bg-red-50 dark:bg-red-950/40 border border-red-200 dark:border-red-900 text-red-700 dark:text-red-300 text-sm flex items-center justify-between">
+        <div className="p-4 rounded-2xl bg-red-50 border border-red-200 text-red-700 text-xs font-medium flex items-center justify-between shadow-xs">
           <div className="flex items-center gap-2">
-            <AlertCircle className="w-4 h-4" />
+            <AlertCircle className="w-4 h-4 text-red-500" />
             <span>{error}</span>
           </div>
           <button onClick={() => setError('')} className="text-xs font-bold text-red-600">✕</button>
@@ -225,66 +234,46 @@ export default function Dashboard() {
       )}
 
       {/* Tabs */}
-      <div className="mt-6 flex gap-2 border-b border-slate-200 dark:border-slate-700 pb-2">
-        <button
-          onClick={() => setActiveTab('all')}
-          className={`px-3 py-1.5 text-xs font-medium rounded-md transition-colors ${
-            activeTab === 'all'
-              ? 'bg-primary-600 text-white font-semibold'
-              : 'text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800'
-          }`}
-        >
-          All Items ({items.length})
-        </button>
-        <button
-          onClick={() => setActiveTab('lost')}
-          className={`px-3 py-1.5 text-xs font-medium rounded-md transition-colors ${
-            activeTab === 'lost'
-              ? 'bg-primary-600 text-white font-semibold'
-              : 'text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800'
-          }`}
-        >
-          Lost Items ({items.filter((i) => i.status === 'lost' && i.state !== 'returned').length})
-        </button>
-        <button
-          onClick={() => setActiveTab('found')}
-          className={`px-3 py-1.5 text-xs font-medium rounded-md transition-colors ${
-            activeTab === 'found'
-              ? 'bg-primary-600 text-white font-semibold'
-              : 'text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800'
-          }`}
-        >
-          Found Items ({items.filter((i) => i.status === 'found' && i.state !== 'returned').length})
-        </button>
-        <button
-          onClick={() => setActiveTab('returned')}
-          className={`px-3 py-1.5 text-xs font-medium rounded-md transition-colors ${
-            activeTab === 'returned'
-              ? 'bg-primary-600 text-white font-semibold'
-              : 'text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800'
-          }`}
-        >
-          Returned ({items.filter((i) => i.state === 'returned').length})
-        </button>
+      <div className="flex flex-wrap gap-2 border-b border-theme-border pb-3">
+        {[
+          { id: 'all', label: `All Items (${items.length})` },
+          { id: 'lost', label: `Lost Items (${items.filter((i) => i.status === 'lost' && i.state !== 'returned').length})` },
+          { id: 'found', label: `Found Items (${items.filter((i) => i.status === 'found' && i.state !== 'returned').length})` },
+          { id: 'returned', label: `Returned (${items.filter((i) => i.state === 'returned').length})` },
+        ].map((tab) => (
+          <button
+            key={tab.id}
+            onClick={() => setActiveTab(tab.id)}
+            className={`px-4 py-2 text-xs font-semibold rounded-full transition-all ${
+              activeTab === tab.id
+                ? 'bg-sage-500 text-white shadow-xs'
+                : 'bg-white text-ink-muted hover:text-ink border border-theme-border hover:border-sage-300'
+            }`}
+          >
+            {tab.label}
+          </button>
+        ))}
       </div>
 
-      {/* Items Grid (Matching Paper Fig. 6) */}
+      {/* Items Grid */}
       {loading ? (
-        <div className="py-16 text-center text-slate-400">
-          <div className="w-8 h-8 border-2 border-primary-600 border-t-transparent rounded-full animate-spin mx-auto mb-2" />
-          <p className="text-sm">Loading your items...</p>
+        <div className="py-16 text-center text-ink-muted bg-white rounded-3xl border border-theme-border shadow-soft">
+          <div className="w-8 h-8 border-3 border-sage-500 border-t-transparent rounded-full animate-spin mx-auto mb-3" />
+          <p className="text-xs font-medium">Loading your items...</p>
         </div>
       ) : filteredItems.length === 0 ? (
-        <div className="card mt-6 p-12 text-center text-slate-500">
-          <Layers className="w-10 h-10 mx-auto mb-2 opacity-30" />
-          <h3 className="font-semibold text-base text-slate-700 dark:text-slate-300">No items found in this section</h3>
-          <p className="text-xs mt-1 text-slate-400">Have you lost or found something? Submit a report to begin matching.</p>
-          <Link to="/upload" className="btn-primary mt-4 text-xs py-2 px-4">
-            Report an Item Now
-          </Link>
+        <div className="bg-white rounded-3xl border border-theme-border p-12 text-center text-ink-muted shadow-soft space-y-3">
+          <Layers className="w-10 h-10 mx-auto text-sage-300" />
+          <h3 className="font-bold text-base text-ink">No items found in this section</h3>
+          <p className="text-xs text-ink-muted max-w-sm mx-auto">Have you lost or found something? Submit a report to begin matching.</p>
+          <div className="pt-2">
+            <Link to="/upload" className="inline-flex items-center gap-2 px-5 py-2.5 bg-sage-500 hover:bg-sage-600 text-white font-semibold text-xs rounded-full shadow-xs">
+              Report an Item Now
+            </Link>
+          </div>
         </div>
       ) : (
-        <div className="mt-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredItems.map((item) => {
             const match = getMatchForItem(item);
             const isLost = item.status === 'lost';
@@ -292,12 +281,12 @@ export default function Dashboard() {
             return (
               <div
                 key={item._id}
-                className="card overflow-hidden flex flex-col justify-between hover:border-slate-300 dark:hover:border-slate-600 transition-colors"
+                className="bg-white rounded-2xl border border-theme-border shadow-soft hover:shadow-lift transition-all overflow-hidden flex flex-col justify-between"
               >
                 {/* Image / Header */}
                 <div>
                   {item.imageUrl ? (
-                    <div className="h-44 w-full bg-slate-100 dark:bg-slate-900 border-b border-slate-200 dark:border-slate-700 overflow-hidden">
+                    <div className="h-44 w-full bg-theme-bg border-b border-theme-border overflow-hidden">
                       <img
                         src={item.imageUrl}
                         alt={item.name}
@@ -305,63 +294,55 @@ export default function Dashboard() {
                       />
                     </div>
                   ) : (
-                    <div className="h-28 w-full bg-slate-100 dark:bg-slate-750 border-b border-slate-200 dark:border-slate-700 flex items-center justify-center text-slate-400">
+                    <div className="h-28 w-full bg-theme-bg border-b border-theme-border flex items-center justify-center text-sage-300">
                       <Tag className="w-8 h-8 opacity-40" />
                     </div>
                   )}
 
-                  {/* Body (Matching Paper Fig. 6 structure) */}
-                  <div className="p-4 space-y-2">
-                    <div className="flex justify-between items-start">
-                      <h3 className="font-bold text-base text-slate-900 dark:text-white capitalize">
+                  {/* Body */}
+                  <div className="p-5 space-y-3">
+                    <div className="flex justify-between items-start gap-2">
+                      <h3 className="font-bold text-base text-ink capitalize">
                         {item.name}
                       </h3>
-                      {/* Status Badge */}
                       <span
-                        className={`inline-flex items-center gap-1 text-[11px] font-semibold px-2 py-0.5 rounded-full ${
+                        className={
                           item.state === 'returned'
-                            ? 'bg-slate-100 text-slate-700 dark:bg-slate-700 dark:text-slate-300'
+                            ? 'badge-claimed'
                             : item.status === 'found'
-                            ? 'bg-green-100 text-green-800 dark:bg-green-950 dark:text-green-300'
-                            : 'bg-amber-100 text-amber-800 dark:bg-amber-950 dark:text-amber-300'
-                        }`}
+                            ? 'badge-found'
+                            : 'badge-lost'
+                        }
                       >
-                        <span className={`w-1.5 h-1.5 rounded-full ${
-                          item.state === 'returned' ? 'bg-slate-500' : item.status === 'found' ? 'bg-green-600' : 'bg-amber-600'
-                        }`} />
-                        {item.state === 'returned' ? 'Returned' : item.status === 'found' ? 'Found' : 'Finding'}
+                        {item.state === 'returned' ? 'Returned' : item.status === 'found' ? 'Found' : 'Searching'}
                       </span>
                     </div>
 
-                    <p className="text-xs text-slate-600 dark:text-slate-300">
-                      <span className="font-medium text-slate-500">Category:</span> {item.category}
+                    <p className="text-xs text-ink-muted leading-relaxed line-clamp-2">
+                      {item.description}
                     </p>
 
-                    <p className="text-xs text-slate-600 dark:text-slate-300">
-                      <span className="font-medium text-slate-500">Description:</span> {item.description}
-                    </p>
+                    <div className="text-xs text-ink-muted flex items-center gap-1.5 pt-1">
+                      <Calendar className="w-3.5 h-3.5 text-sage-600" />
+                      <span>{new Date(item.date).toLocaleDateString()}</span>
+                    </div>
 
-                    <p className="text-xs text-slate-500 dark:text-slate-400 flex items-center gap-1">
-                      <Calendar className="w-3 h-3" />
-                      <span>Date: {new Date(item.date).toLocaleDateString()}</span>
-                    </p>
-
-                    {/* MATCH SECTION (Matching Paper Fig. 6) */}
+                    {/* MATCH SECTION */}
                     {match && (
-                      <div className="mt-3 p-3 bg-green-50 dark:bg-green-950/40 rounded-lg border border-green-200 dark:border-green-800/60 space-y-2">
-                        <div className="flex items-center justify-between text-xs font-semibold text-green-800 dark:text-green-300">
-                          <span className="flex items-center gap-1">
-                            <CheckCircle2 className="w-3.5 h-3.5 text-green-600" />
-                            A match has been found!
+                      <div className="mt-3 p-4 bg-sage-50 rounded-2xl border border-sage-200 space-y-3">
+                        <div className="flex items-center justify-between text-xs font-bold text-sage-800">
+                          <span className="flex items-center gap-1.5">
+                            <CheckCircle2 className="w-4 h-4 text-sage-600" />
+                            A match was identified!
                           </span>
-                          <span className="text-[11px] bg-green-200 dark:bg-green-900 px-1.5 py-0.2 rounded font-bold">
+                          <span className="badge-found text-[10px]">
                             {Math.round(match.finalScore * 100)}% Match
                           </span>
                         </div>
 
                         {/* Matched item photo preview */}
                         {match.foundItemId?.imageUrl && (
-                          <div className="w-16 h-16 rounded border border-green-200 dark:border-green-800 overflow-hidden bg-white">
+                          <div className="w-16 h-16 rounded-xl border border-sage-200 overflow-hidden bg-white">
                             <img
                               src={match.foundItemId.imageUrl}
                               alt="Matched Item"
@@ -372,13 +353,13 @@ export default function Dashboard() {
 
                         {/* Finder's details (Conditionally revealed to Lost item owner) */}
                         {isLost && match.foundItemId?.contact && (
-                          <div className="text-xs text-green-900 dark:text-green-200 pt-1 border-t border-green-200 dark:border-green-800/50 space-y-0.5">
+                          <div className="text-xs text-sage-900 pt-2 border-t border-sage-200 space-y-1">
                             <p>
-                              <span className="font-semibold">Finder's Name:</span>{' '}
+                              <span className="font-semibold">Finder:</span>{' '}
                               {match.foundItemId.contact.name || 'Anonymous Finder'}
                             </p>
                             <p>
-                              <span className="font-semibold">Phone Number:</span>{' '}
+                              <span className="font-semibold">Phone:</span>{' '}
                               {match.foundItemId.contact.phone || 'Contact via Portal'}
                             </p>
                           </div>
@@ -390,17 +371,17 @@ export default function Dashboard() {
                             match.state === 'suggested' ? (
                               <button
                                 onClick={() => handleClaim(match._id)}
-                                className="w-full btn-primary py-1.5 text-xs font-semibold"
+                                className="w-full py-2 bg-sage-500 hover:bg-sage-600 text-white rounded-full text-xs font-semibold shadow-xs transition-colors"
                               >
                                 This is mine (Request Claim)
                               </button>
                             ) : match.state === 'claimed' ? (
-                              <span className="text-[11px] text-amber-700 dark:text-amber-300 font-medium flex items-center gap-1">
+                              <span className="text-[11px] text-amber-700 font-semibold flex items-center gap-1">
                                 <Clock className="w-3 h-3" /> Claim pending finder confirmation
                               </span>
                             ) : match.state === 'confirmed' ? (
-                              <span className="text-[11px] text-green-700 dark:text-green-300 font-medium flex items-center gap-1">
-                                <Check className="w-3 h-3" /> Claim Confirmed & Returned
+                              <span className="text-[11px] text-sage-800 font-bold flex items-center gap-1">
+                                <Check className="w-3.5 h-3.5 text-sage-600" /> Claim Confirmed &amp; Returned
                               </span>
                             ) : (
                               <span className="text-[11px] text-red-600 font-medium">Claim was declined</span>
@@ -408,31 +389,31 @@ export default function Dashboard() {
                           ) : (
                             /* Finder view */
                             match.state === 'claimed' ? (
-                              <div className="space-y-1.5">
-                                <p className="text-[11px] text-amber-800 dark:text-amber-200 font-semibold">
+                              <div className="space-y-2">
+                                <p className="text-[11px] text-amber-900 font-semibold">
                                   Owner claimed this item. Please verify:
                                 </p>
                                 <div className="flex gap-2">
                                   <button
                                     onClick={() => handleConfirm(match._id)}
-                                    className="flex-1 btn-primary py-1 text-xs"
+                                    className="flex-1 py-1.5 bg-sage-500 hover:bg-sage-600 text-white rounded-full text-xs font-semibold"
                                   >
                                     Confirm Return
                                   </button>
                                   <button
                                     onClick={() => handleReject(match._id)}
-                                    className="flex-1 btn-secondary text-xs text-red-600 py-1"
+                                    className="flex-1 py-1.5 bg-white hover:bg-red-50 text-red-600 border border-red-200 rounded-full text-xs font-semibold"
                                   >
                                     Decline
                                   </button>
                                 </div>
                               </div>
                             ) : match.state === 'confirmed' ? (
-                              <span className="text-[11px] text-green-700 font-medium flex items-center gap-1">
-                                <Check className="w-3 h-3" /> Successfully Returned
+                              <span className="text-[11px] text-sage-800 font-bold flex items-center gap-1">
+                                <Check className="w-3.5 h-3.5 text-sage-600" /> Successfully Returned
                               </span>
                             ) : (
-                              <span className="text-[11px] text-slate-500">
+                              <span className="text-[11px] text-ink-muted">
                                 Matched with reported lost item
                               </span>
                             )
@@ -444,21 +425,21 @@ export default function Dashboard() {
                 </div>
 
                 {/* Footer Controls */}
-                <div className="p-3 bg-slate-50 dark:bg-slate-750 border-t border-slate-200 dark:border-slate-700 flex justify-between items-center text-xs">
+                <div className="p-4 bg-theme-subcard border-t border-theme-border flex justify-between items-center text-xs">
                   {item.state !== 'returned' ? (
                     <button
                       onClick={() => handleMarkReturned(item._id)}
-                      className="text-primary-700 dark:text-primary-400 hover:underline font-medium"
+                      className="text-sage-700 hover:text-sage-800 hover:underline font-semibold"
                     >
                       Mark as Returned
                     </button>
                   ) : (
-                    <span className="text-slate-400">Completed</span>
+                    <span className="text-ink-faint font-medium">Archived</span>
                   )}
 
                   <button
                     onClick={() => handleDeleteItem(item._id)}
-                    className="text-red-600 hover:text-red-700 hover:underline flex items-center gap-1"
+                    className="text-red-500 hover:text-red-700 hover:underline font-medium flex items-center gap-1"
                   >
                     <Trash2 className="w-3.5 h-3.5" /> Delete
                   </button>

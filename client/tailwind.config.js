@@ -7,31 +7,38 @@ export default {
   theme: {
     extend: {
       colors: {
-        paper: {
-          DEFAULT: '#F4EFE6',
-          card: '#FAF7F0',
-          border: '#DDD5C7',
-          darkBorder: '#C8BEAD',
+        theme: {
+          bg: '#F7FAF7',
+          card: '#FFFFFF',
+          subcard: '#F0F7F1',
+          border: '#D8EAD9',
+          darkBorder: '#BFDDBD',
+        },
+        sage: {
+          50: '#F4F9F4',
+          100: '#E8F5E9',
+          200: '#D2EBD4',
+          300: '#ADDAB2',
+          400: '#7EC286',
+          500: '#4CA869',
+          600: '#3D8E56',
+          700: '#317345',
+          800: '#285C38',
+          900: '#1C3E26',
         },
         ink: {
-          DEFAULT: '#1C1B19',
-          muted: '#68645E',
-          faint: '#9E9990',
-        },
-        rust: {
-          DEFAULT: '#D9531E',
-          hover: '#C24412',
-          faint: '#FDF1EC',
-          border: '#F4CBB8',
+          DEFAULT: '#1C2B21',
+          muted: '#526A59',
+          faint: '#879E8E',
         }
       },
       fontFamily: {
-        serif: ['Fraunces', 'Georgia', 'serif'],
-        sans: ['"Instrument Sans"', 'system-ui', '-apple-system', 'sans-serif'],
+        sans: ['"Inter"', 'system-ui', '-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', 'Roboto', 'sans-serif'],
       },
       boxShadow: {
-        'card': '0 1px 2px 0 rgba(28, 27, 25, 0.05)',
-        'lift': '0 4px 8px -2px rgba(28, 27, 25, 0.08)',
+        'soft': '0 4px 20px -2px rgba(45, 95, 55, 0.05)',
+        'card': '0 2px 12px -1px rgba(35, 80, 45, 0.06)',
+        'lift': '0 8px 24px -4px rgba(35, 80, 45, 0.10)',
       }
     },
   },

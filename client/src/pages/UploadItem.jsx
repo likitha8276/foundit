@@ -135,28 +135,29 @@ export default function UploadItem() {
 
   return (
     <div className="max-w-3xl mx-auto px-4 py-8 sm:py-12">
-      {/* Editorial Header */}
-      <div className="border-b border-paper-border pb-6 mb-8">
-        <div className="inline-flex items-center gap-2 px-2.5 py-1 text-[11px] font-mono uppercase tracking-wider text-ink-muted bg-paper-card border border-paper-border rounded-[2px] mb-3">
+      {/* Clean Modern Header Card */}
+      <div className="bg-white rounded-3xl p-6 sm:p-8 border border-theme-border shadow-soft mb-8">
+        <div className="inline-flex items-center gap-2 px-3 py-1 text-xs font-semibold text-sage-800 bg-sage-50 border border-sage-200 rounded-full mb-3">
           <span>Notice Dispatch · New Report</span>
         </div>
-        <h1 className="font-serif text-3xl sm:text-4xl font-bold text-ink tracking-tight">
-          {status === 'lost' ? 'Report a Lost Item' : 'Pin a Found Item'}
+        <h1 className="text-2xl sm:text-3xl font-bold text-ink tracking-tight">
+          {status === 'lost' ? 'Report a Lost Item' : 'Post a Found Item'}
         </h1>
-        <p className="text-sm text-ink-muted mt-2">
+        <div className="green-bar mt-2" />
+        <p className="text-sm text-ink-muted mt-2.5">
           {status === 'lost'
-            ? "Pin your lost item on the notice board. We'll notify you if someone posts a matching item."
-            : 'Post details of the item you found. The owner can verify and arrange a pickup.'}
+            ? "Submit details of your lost belonging. Our matching engine will cross-reference candidate posts nearby."
+            : 'Post details of the item you found so the verified owner can initiate a secure claim.'}
         </p>
 
         {/* Status Toggle */}
-        <div className="mt-5 inline-flex p-1 bg-paper-card border border-paper-border rounded-[2px]">
+        <div className="mt-6 inline-flex p-1 bg-theme-bg border border-theme-border rounded-full">
           <button
             type="button"
             onClick={() => setStatus('lost')}
-            className={`px-4 py-1.5 text-xs font-semibold rounded-[2px] transition-colors ${
+            className={`px-5 py-2 text-xs font-semibold rounded-full transition-all ${
               status === 'lost'
-                ? 'bg-rust text-white shadow-xs'
+                ? 'bg-amber-600 text-white shadow-xs'
                 : 'text-ink-muted hover:text-ink'
             }`}
           >
@@ -165,9 +166,9 @@ export default function UploadItem() {
           <button
             type="button"
             onClick={() => setStatus('found')}
-            className={`px-4 py-1.5 text-xs font-semibold rounded-[2px] transition-colors ${
+            className={`px-5 py-2 text-xs font-semibold rounded-full transition-all ${
               status === 'found'
-                ? 'bg-[#2F6F4E] text-white shadow-xs'
+                ? 'bg-sage-500 text-white shadow-xs'
                 : 'text-ink-muted hover:text-ink'
             }`}
           >
@@ -177,18 +178,18 @@ export default function UploadItem() {
       </div>
 
       {error && (
-        <div className="mb-6 p-3 bg-rust/10 border border-rust text-rust text-xs rounded-[2px] flex items-center gap-2">
-          <AlertCircle size={14} className="shrink-0" />
+        <div className="mb-6 p-4 bg-red-50 border border-red-200 text-red-700 text-xs rounded-2xl flex items-center gap-2.5">
+          <AlertCircle size={16} className="shrink-0 text-red-500" />
           <span>{error}</span>
         </div>
       )}
 
       {/* Main Report Form */}
-      <form onSubmit={handleSubmit} className="space-y-6">
+      <form onSubmit={handleSubmit} className="bg-white rounded-3xl p-6 sm:p-8 border border-theme-border shadow-soft space-y-6">
         {/* Item Name & Category */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
           <div>
-            <label className="block text-xs font-semibold uppercase font-mono text-ink mb-1">
+            <label className="block text-xs font-semibold uppercase tracking-wider text-ink mb-1.5">
               Item Name *
             </label>
             <input
@@ -197,18 +198,18 @@ export default function UploadItem() {
               value={name}
               onChange={(e) => setName(e.target.value)}
               placeholder="e.g. Casio fx-991EX, Blue Milton Bottle, AirPods Pro"
-              className="w-full px-3 py-2 bg-paper-card border border-paper-border rounded-[2px] text-sm text-ink placeholder:text-ink-faint focus:outline-none focus:border-rust"
+              className="w-full px-4 py-2.5 bg-theme-bg border border-theme-border rounded-xl text-sm text-ink placeholder:text-ink-faint focus:outline-none focus:border-sage-500 focus:bg-white transition-all"
             />
           </div>
 
           <div>
-            <label className="block text-xs font-semibold uppercase font-mono text-ink mb-1">
+            <label className="block text-xs font-semibold uppercase tracking-wider text-ink mb-1.5">
               Category *
             </label>
             <select
               value={category}
               onChange={(e) => setCategory(e.target.value)}
-              className="w-full px-3 py-2 bg-paper-card border border-paper-border rounded-[2px] text-sm text-ink focus:outline-none focus:border-rust"
+              className="w-full px-4 py-2.5 bg-theme-bg border border-theme-border rounded-xl text-sm text-ink focus:outline-none focus:border-sage-500 cursor-pointer"
             >
               {CATEGORIES.map((cat) => (
                 <option key={cat.value} value={cat.value}>
@@ -221,7 +222,7 @@ export default function UploadItem() {
 
         {/* Date */}
         <div>
-          <label className="block text-xs font-semibold uppercase font-mono text-ink mb-1">
+          <label className="block text-xs font-semibold uppercase tracking-wider text-ink mb-1.5">
             Date {status === 'lost' ? 'Lost' : 'Found'} *
           </label>
           <input
@@ -230,13 +231,13 @@ export default function UploadItem() {
             max={new Date().toISOString().split('T')[0]}
             value={date}
             onChange={(e) => setDate(e.target.value)}
-            className="w-full sm:w-64 px-3 py-2 bg-paper-card border border-paper-border rounded-[2px] text-sm text-ink focus:outline-none focus:border-rust"
+            className="w-full sm:w-64 px-4 py-2.5 bg-theme-bg border border-theme-border rounded-xl text-sm text-ink focus:outline-none focus:border-sage-500"
           />
         </div>
 
         {/* Description */}
         <div>
-          <label className="block text-xs font-semibold uppercase font-mono text-ink mb-1">
+          <label className="block text-xs font-semibold uppercase tracking-wider text-ink mb-1.5">
             Detailed Description *
           </label>
           <textarea
@@ -244,13 +245,13 @@ export default function UploadItem() {
             rows={3}
             value={description}
             onChange={(e) => setDescription(e.target.value)}
-            placeholder="Mention brand, color, scratches, stickers, case type, or specific distinguishing marks..."
-            className="w-full px-3 py-2 bg-paper-card border border-paper-border rounded-[2px] text-sm text-ink placeholder:text-ink-faint focus:outline-none focus:border-rust leading-relaxed"
+            placeholder="Mention brand, color, distinguishing scratches, stickers, case type, or unique marks..."
+            className="w-full px-4 py-2.5 bg-theme-bg border border-theme-border rounded-xl text-sm text-ink placeholder:text-ink-faint focus:outline-none focus:border-sage-500 focus:bg-white leading-relaxed transition-all"
           />
         </div>
 
         {/* Geolocation & Interactive Map Picker */}
-        <div className="p-4 bg-paper-card border border-paper-border rounded-[2px]">
+        <div className="p-4 sm:p-5 bg-theme-subcard border border-theme-border rounded-2xl">
           <LocationPicker
             latitude={latitude}
             longitude={longitude}
@@ -262,20 +263,20 @@ export default function UploadItem() {
 
         {/* If Found: Holding point & Contact */}
         {status === 'found' && (
-          <div className="p-4 bg-paper-card border border-paper-border rounded-[2px] space-y-4">
-            <h3 className="font-serif text-sm font-bold text-ink">
+          <div className="p-5 bg-theme-subcard border border-theme-border rounded-2xl space-y-4">
+            <h3 className="text-sm font-bold text-ink">
               Where is this item currently held?
             </h3>
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 text-xs">
-              {['With me', 'Security Desk', 'Block / Facility Office'].map((opt) => (
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 text-xs">
+              {['With me', 'Security Desk', 'Facility Intake Office'].map((opt) => (
                 <button
                   type="button"
                   key={opt}
                   onClick={() => setCurrentHolding(opt)}
-                  className={`p-2.5 border text-center rounded-[2px] font-medium transition-colors ${
+                  className={`p-3 border text-center rounded-xl font-medium transition-all ${
                     currentHolding === opt
-                      ? 'border-ink bg-ink text-white'
-                      : 'border-paper-border bg-paper text-ink-muted hover:text-ink'
+                      ? 'border-sage-600 bg-sage-500 text-white shadow-xs'
+                      : 'border-theme-border bg-white text-ink-muted hover:text-ink hover:border-sage-300'
                   }`}
                 >
                   {opt}
@@ -283,21 +284,21 @@ export default function UploadItem() {
               ))}
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
               <div>
-                <label className="block text-[11px] font-mono text-ink-muted mb-1 uppercase">
+                <label className="block text-[11px] font-semibold text-ink-muted mb-1.5 uppercase">
                   Finder Name
                 </label>
                 <input
                   type="text"
                   value={finderName}
                   onChange={(e) => setFinderName(e.target.value)}
-                  placeholder="Your name or desk officer"
-                  className="w-full px-3 py-2 bg-paper border border-paper-border rounded-[2px] text-xs text-ink"
+                  placeholder="Your name or desk supervisor"
+                  className="w-full px-4 py-2 bg-white border border-theme-border rounded-xl text-xs text-ink focus:outline-none focus:border-sage-500"
                 />
               </div>
               <div>
-                <label className="block text-[11px] font-mono text-ink-muted mb-1 uppercase">
+                <label className="block text-[11px] font-semibold text-ink-muted mb-1.5 uppercase">
                   Finder Phone (Revealed only to verified owner)
                 </label>
                 <input
@@ -305,22 +306,22 @@ export default function UploadItem() {
                   value={finderPhone}
                   onChange={(e) => setFinderPhone(e.target.value)}
                   placeholder="e.g. +91 98765 43210"
-                  className="w-full px-3 py-2 bg-paper border border-paper-border rounded-[2px] text-xs text-ink"
+                  className="w-full px-4 py-2 bg-white border border-theme-border rounded-xl text-xs text-ink focus:outline-none focus:border-sage-500"
                 />
               </div>
             </div>
           </div>
         )}
 
-        {/* Photo Upload (Polaroid Preview) */}
+        {/* Photo Upload */}
         <div>
-          <label className="block text-xs font-semibold uppercase font-mono text-ink mb-1">
-            Item Photograph (Optional for Lost, Strongly Recommended for Found)
+          <label className="block text-xs font-semibold uppercase tracking-wider text-ink mb-1.5">
+            Item Photograph (Recommended)
           </label>
           <div className="flex flex-col sm:flex-row items-start gap-4">
-            <label className="cursor-pointer inline-flex items-center gap-2 px-4 py-2.5 bg-paper-card border border-paper-darkBorder hover:border-ink rounded-[2px] text-xs font-medium text-ink transition-all">
-              <UploadCloud size={16} className="text-rust" />
-              <span>Choose photo file (JPEG/PNG, max 5MB)</span>
+            <label className="cursor-pointer inline-flex items-center gap-2.5 px-5 py-3 bg-theme-bg hover:bg-sage-50 border border-theme-border hover:border-sage-300 rounded-xl text-xs font-semibold text-sage-800 transition-all shadow-xs">
+              <UploadCloud size={17} className="text-sage-600" />
+              <span>Choose Photo File (JPEG/PNG, max 5MB)</span>
               <input
                 type="file"
                 accept="image/jpeg,image/png,image/webp"
@@ -330,14 +331,14 @@ export default function UploadItem() {
             </label>
 
             {imagePreview && (
-              <div className="bg-white p-2 border border-paper-border shadow-xs max-w-xs">
+              <div className="bg-white p-2 border border-theme-border rounded-xl shadow-xs max-w-xs">
                 <img
                   src={imagePreview}
                   alt="Upload preview"
-                  className="h-28 w-auto object-cover rounded-[1px]"
+                  className="h-28 w-auto object-cover rounded-lg"
                 />
-                <p className="text-[10px] text-ink-muted text-center pt-1 font-mono">
-                  Attached photo
+                <p className="text-[10px] text-ink-muted text-center pt-1.5 font-medium">
+                  Photo Attached
                 </p>
               </div>
             )}
@@ -345,20 +346,20 @@ export default function UploadItem() {
         </div>
 
         {/* Submit Action */}
-        <div className="pt-4 border-t border-paper-border flex items-center justify-between">
+        <div className="pt-5 border-t border-theme-border flex items-center justify-between">
           <Link
             to="/"
-            className="text-xs text-ink-muted hover:text-ink transition-colors"
+            className="text-xs font-semibold text-ink-muted hover:text-sage-600 transition-colors"
           >
-            &larr; Cancel and return to board
+            &larr; Return to Browse
           </Link>
 
           <button
             type="submit"
             disabled={loading}
-            className="inline-flex items-center gap-2 px-6 py-3 bg-rust hover:bg-rust-hover text-white font-medium text-sm rounded-[2px] transition-colors shadow-sm disabled:opacity-50"
+            className="inline-flex items-center gap-2 px-7 py-3 bg-sage-500 hover:bg-sage-600 text-white font-semibold text-sm rounded-full transition-all shadow-sm hover:shadow-soft disabled:opacity-50"
           >
-            <span>{loading ? 'Comparing descriptions and proximity...' : 'Pin to Notice Board'}</span>
+            <span>{loading ? 'Evaluating AI & Proximity Match...' : 'Publish Notice'}</span>
             <ArrowRight size={15} />
           </button>
         </div>
@@ -366,44 +367,44 @@ export default function UploadItem() {
 
       {/* INSTANT PROXIMITY & AI MATCH BANNER / MODAL */}
       {instantMatch && (
-        <div className="fixed inset-0 z-50 bg-ink/60 backdrop-blur-xs flex items-center justify-center p-4">
-          <div className="bg-paper-card border-2 border-rust max-w-md w-full p-6 rounded-[2px] shadow-2xl relative space-y-4">
-            <div className="flex items-center justify-between border-b border-paper-border pb-3">
-              <span className="text-xs font-mono uppercase tracking-wider text-rust font-bold flex items-center gap-1.5">
-                <Sparkles size={14} />
+        <div className="fixed inset-0 z-50 bg-black/40 backdrop-blur-xs flex items-center justify-center p-4">
+          <div className="bg-white border border-sage-300 max-w-md w-full p-6 sm:p-7 rounded-3xl shadow-lift relative space-y-4 animate-scale-up">
+            <div className="flex items-center justify-between border-b border-theme-border pb-3">
+              <span className="text-xs font-bold uppercase tracking-wider text-sage-700 flex items-center gap-1.5">
+                <Sparkles size={15} className="text-sage-500" />
                 Potential Match Found Nearby!
               </span>
-              <span className="stamp stamp-found">
+              <span className="badge-found">
                 {instantMatch.percentage}% Match
               </span>
             </div>
 
             <div>
-              <h3 className="font-serif text-xl font-bold text-ink">
+              <h3 className="text-xl font-bold text-ink">
                 {instantMatch.name}
               </h3>
-              <p className="text-xs text-ink-muted mt-1">
-                📍 {instantMatch.location} · {instantMatch.distanceMeters}m away from your report
+              <p className="text-xs text-ink-muted mt-1 font-medium">
+                📍 {instantMatch.location} · {instantMatch.distanceMeters}m from your report
               </p>
             </div>
 
-            <div className="p-3 bg-paper border border-paper-border text-xs text-ink-muted rounded-[2px] space-y-1">
+            <div className="p-4 bg-theme-subcard border border-theme-border text-xs text-ink-muted rounded-2xl space-y-1">
               <p className="font-semibold text-ink">Ownership Verification Prompt:</p>
               <p>
                 Does your item match the description and location above? You can review the match details and initiate a private claim.
               </p>
             </div>
 
-            <div className="flex items-center justify-end gap-2 pt-2">
+            <div className="flex items-center justify-end gap-3 pt-2">
               <button
                 onClick={() => navigate('/')}
-                className="px-3 py-1.5 text-xs text-ink-muted hover:text-ink font-medium"
+                className="px-4 py-2 text-xs text-ink-muted hover:text-ink font-semibold rounded-full"
               >
                 Dismiss to Board
               </button>
               <Link
                 to="/item/item-001"
-                className="px-4 py-2 bg-rust hover:bg-rust-hover text-white font-medium text-xs rounded-[2px] transition-colors"
+                className="px-5 py-2.5 bg-sage-500 hover:bg-sage-600 text-white font-semibold text-xs rounded-full transition-all shadow-xs"
               >
                 Review Match &amp; Claim &rarr;
               </Link>

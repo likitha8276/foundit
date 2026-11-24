@@ -4,79 +4,68 @@
 
 @layer base {
   body {
-    background-color: #F4EFE6;
-    color: #1C1B19;
-    font-family: 'Instrument Sans', system-ui, sans-serif;
+    background-color: #F7FAF7;
+    color: #1C2B21;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
   }
 }
 
-/* Rubber Stamp Effect */
-.stamp {
-  display: inline-block;
-  padding: 0.15rem 0.5rem;
-  text-transform: uppercase;
-  font-family: 'Instrument Sans', sans-serif;
-  font-weight: 700;
-  font-size: 0.7rem;
-  letter-spacing: 0.08em;
-  border-radius: 2px;
-  border: 1.5px solid currentColor;
-  line-height: 1.1;
-  mask-image: radial-gradient(circle, rgba(0,0,0,1) 80%, rgba(0,0,0,0.8) 100%);
-}
-
-.stamp-found {
-  color: #D9531E;
-  border-color: #D9531E;
-  background-color: rgba(217, 83, 30, 0.05);
-}
-
-.stamp-claimed {
-  color: #68645E;
-  border-color: #68645E;
-  background-color: rgba(104, 100, 94, 0.06);
-}
-
-.stamp-returned {
-  color: #2F6F4E;
-  border-color: #2F6F4E;
-  background-color: rgba(47, 111, 78, 0.06);
-}
-
-/* Index Card with slight rotation */
-.notice-card {
-  background-color: #FAF7F0;
-  border: 1px solid #DDD5C7;
-  border-radius: 2px;
-  box-shadow: 0 1px 2px 0 rgba(28, 27, 25, 0.04);
-  transition: transform 0.15s ease-out, box-shadow 0.15s ease-out;
-}
-
-.notice-card:hover {
-  transform: rotate(0deg) translateY(-2px) !important;
-  box-shadow: 0 4px 10px -2px rgba(28, 27, 25, 0.08);
-}
-
-/* Brass Pin Detail */
-.pin-dot {
-  width: 9px;
-  height: 9px;
+/* Modern Pill Badges */
+.badge-found {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 600;
   border-radius: 9999px;
-  background: radial-gradient(circle at 30% 30%, #F59E0B, #B45309);
-  box-shadow: 0 1px 2px rgba(28, 27, 25, 0.35);
-  border: 1px solid rgba(0, 0, 0, 0.25);
+  background-color: #E8F5E9;
+  color: #2E7D32;
+  border: 1px solid #C8E6C9;
 }
 
-/* Washi / Masking Tape Detail */
-.tape-strip {
-  position: absolute;
-  top: -8px;
-  left: 50%;
-  transform: translateX(-50%) rotate(-1deg);
-  width: 48px;
-  height: 16px;
-  background-color: rgba(235, 225, 205, 0.85);
-  border: 1px solid rgba(210, 195, 175, 0.6);
-  box-shadow: 0 1px 2px rgba(28, 27, 25, 0.08);
-  backdrop-filter: blur(1px);
+.badge-lost {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border-radius: 9999px;
+  background-color: #FFF3E0;
+  color: #D84315;
+  border: 1px solid #FFE0B2;
+}
+
+.badge-claimed {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border-radius: 9999px;
+  background-color: #EBF3F8;
+  color: #1E6091;
+  border: 1px solid #CFE2FE;
+}
+
+/* Modern Card */
+.pro-card {
+  background-color: #FFFFFF;
+  border: 1px solid #D8EAD9;
+  border-radius: 1.25rem;
+  box-shadow: 0 4px 20px -2px rgba(45, 95, 55, 0.05);
+  transition: all 0.2s ease-in-out;
+}
+
+.pro-card:hover {
+  border-color: #ADDAB2;
+  box-shadow: 0 8px 24px -4px rgba(45, 95, 55, 0.10);
+  transform: translateY(-2px);
+}
+
+/* Title Green Underline Accent */
+.green-bar {
+  width: 2.25rem;
+  height: 0.25rem;
+  background-color: #4CA869;
+  border-radius: 9999px;
 }

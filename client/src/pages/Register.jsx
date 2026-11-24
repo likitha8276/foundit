@@ -55,34 +55,37 @@ export default function Register() {
 
   return (
     <div className="min-h-[calc(100vh-4rem)] flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-      <div className="w-full max-w-md bg-white dark:bg-slate-800 p-8 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm transition-colors">
+      <div className="w-full max-w-md bg-white p-8 sm:p-9 rounded-3xl border border-theme-border shadow-soft">
         {/* Header */}
         <div className="text-center mb-6">
-          <div className="w-12 h-12 mx-auto rounded-lg bg-primary-100 dark:bg-primary-950/80 text-primary-700 dark:text-primary-400 border border-primary-200 dark:border-primary-800 flex items-center justify-center mb-3">
-            <PackageCheck className="w-6 h-6" />
+          <div className="w-14 h-14 mx-auto rounded-full bg-sage-50 text-sage-600 border border-sage-200 flex items-center justify-center mb-3 shadow-xs">
+            <PackageCheck className="w-7 h-7" />
           </div>
-          <h2 className="text-2xl font-bold text-slate-900 dark:text-white">
+          <h2 className="text-2xl font-bold text-ink">
             Register New Account
           </h2>
-          <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">
+          <div className="green-bar mx-auto mt-2" />
+          <p className="mt-2 text-xs text-ink-muted">
             Create an account to report and claim items
           </p>
         </div>
 
         {/* Error Alert */}
         {error && (
-          <div className="mb-4 p-3 rounded-lg bg-red-50 dark:bg-red-950/40 border border-red-200 dark:border-red-900 text-red-700 dark:text-red-300 text-sm flex items-center gap-2">
-            <AlertCircle className="w-4 h-4 flex-shrink-0" />
-            <span className="text-xs">{error}</span>
+          <div className="mb-4 p-3.5 rounded-2xl bg-red-50 border border-red-200 text-red-700 text-xs flex items-center gap-2">
+            <AlertCircle className="w-4 h-4 flex-shrink-0 text-red-500" />
+            <span>{error}</span>
           </div>
         )}
 
         {/* Form */}
         <form className="space-y-3.5" onSubmit={handleSubmit}>
           <div>
-            <label className="label">Full Name</label>
+            <label className="block text-xs font-semibold uppercase tracking-wider text-ink mb-1">
+              Full Name
+            </label>
             <div className="relative">
-              <User className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
+              <User className="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-ink-faint" />
               <input
                 type="text"
                 name="name"
@@ -90,15 +93,17 @@ export default function Register() {
                 value={formData.name}
                 onChange={handleChange}
                 placeholder="Priya Sharma"
-                className="input-field pl-9"
+                className="w-full pl-10 pr-4 py-2 bg-theme-bg border border-theme-border rounded-xl text-sm text-ink placeholder:text-ink-faint focus:outline-none focus:border-sage-500 focus:bg-white transition-all"
               />
             </div>
           </div>
 
           <div>
-            <label className="label">Email Address</label>
+            <label className="block text-xs font-semibold uppercase tracking-wider text-ink mb-1">
+              Email Address
+            </label>
             <div className="relative">
-              <Mail className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
+              <Mail className="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-ink-faint" />
               <input
                 type="email"
                 name="email"
@@ -106,30 +111,34 @@ export default function Register() {
                 value={formData.email}
                 onChange={handleChange}
                 placeholder="priya@example.in"
-                className="input-field pl-9"
+                className="w-full pl-10 pr-4 py-2 bg-theme-bg border border-theme-border rounded-xl text-sm text-ink placeholder:text-ink-faint focus:outline-none focus:border-sage-500 focus:bg-white transition-all"
               />
             </div>
           </div>
 
           <div>
-            <label className="label">Contact Phone (Optional)</label>
+            <label className="block text-xs font-semibold uppercase tracking-wider text-ink mb-1">
+              Contact Phone (Optional)
+            </label>
             <div className="relative">
-              <Phone className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
+              <Phone className="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-ink-faint" />
               <input
                 type="tel"
                 name="phone"
                 value={formData.phone}
                 onChange={handleChange}
                 placeholder="+91 98765 43210"
-                className="input-field pl-9"
+                className="w-full pl-10 pr-4 py-2 bg-theme-bg border border-theme-border rounded-xl text-sm text-ink placeholder:text-ink-faint focus:outline-none focus:border-sage-500 focus:bg-white transition-all"
               />
             </div>
           </div>
 
           <div>
-            <label className="label">Password</label>
+            <label className="block text-xs font-semibold uppercase tracking-wider text-ink mb-1">
+              Password
+            </label>
             <div className="relative">
-              <Lock className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
+              <Lock className="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-ink-faint" />
               <input
                 type="password"
                 name="password"
@@ -137,15 +146,17 @@ export default function Register() {
                 value={formData.password}
                 onChange={handleChange}
                 placeholder="Minimum 6 characters"
-                className="input-field pl-9"
+                className="w-full pl-10 pr-4 py-2 bg-theme-bg border border-theme-border rounded-xl text-sm text-ink placeholder:text-ink-faint focus:outline-none focus:border-sage-500 focus:bg-white transition-all"
               />
             </div>
           </div>
 
           <div>
-            <label className="label">Confirm Password</label>
+            <label className="block text-xs font-semibold uppercase tracking-wider text-ink mb-1">
+              Confirm Password
+            </label>
             <div className="relative">
-              <Lock className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
+              <Lock className="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-ink-faint" />
               <input
                 type="password"
                 name="confirmPassword"
@@ -153,7 +164,7 @@ export default function Register() {
                 value={formData.confirmPassword}
                 onChange={handleChange}
                 placeholder="Re-enter password"
-                className="input-field pl-9"
+                className="w-full pl-10 pr-4 py-2 bg-theme-bg border border-theme-border rounded-xl text-sm text-ink placeholder:text-ink-faint focus:outline-none focus:border-sage-500 focus:bg-white transition-all"
               />
             </div>
           </div>
@@ -161,7 +172,7 @@ export default function Register() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full btn-primary py-2.5 mt-2"
+            className="w-full bg-sage-500 hover:bg-sage-600 active:bg-sage-700 text-white font-semibold py-3 px-4 rounded-full transition-all shadow-sm hover:shadow-soft mt-3 flex items-center justify-center"
           >
             {loading ? (
               <span className="inline-block w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin mr-2" />
@@ -171,9 +182,9 @@ export default function Register() {
         </form>
 
         {/* Footer */}
-        <div className="mt-6 text-center text-xs text-slate-600 dark:text-slate-400">
+        <div className="mt-6 text-center text-xs text-ink-muted">
           Already registered?{' '}
-          <Link to="/login" className="font-semibold text-primary-600 hover:text-primary-700 hover:underline">
+          <Link to="/login" className="font-semibold text-sage-600 hover:text-sage-700 hover:underline">
             Sign In
           </Link>
         </div>
